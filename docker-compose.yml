@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: database_bootstrap1
+    volumes:
+      - ./database/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
