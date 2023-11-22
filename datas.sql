@@ -3,6 +3,7 @@ CREATE TABLE Users (
     UserID SERIAL PRIMARY KEY,
     Email VARCHAR(255) NOT NULL,
     Password VARCHAR(255) NOT NULL,
+    -- OAuth2Token VARCHAR(255), 
     CONSTRAINT UC_Email UNIQUE (Email)
 );
 
