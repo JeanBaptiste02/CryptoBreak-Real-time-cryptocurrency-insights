@@ -38,9 +38,24 @@ exports.login = (req, res, next) => {
               .json({ message: "Paire login/mot de passe incorrecte" });
           }
 
+          // Créez un token
+          const token = jwt.sign(
+            { userId: user._id, email: user.email },
+            "votre_secret_key_secrete",
+            { expiresIn: "24h" } // Optionnel : définissez une expiration pour le cookie
+          );
+
+          // Ajoutez le token dans un cookie
+          res.cookie("token", token, {
+            httpOnly: true,
+            secure: true, // Activez ceci si vous utilisez HTTPS
+            // sameSite: "None", // Activez ceci si vous souhaitez autoriser les cookies cross-site (CSRF)
+          });
+
+          // Répondez avec succès
           res.status(200).json({
             userId: user._id,
-            token: "TOKEN",
+            message: "Authentification réussie",
           });
         })
         .catch((compareError) => {
