@@ -4,14 +4,32 @@
 
     <div class="input-group">
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required [(ngModel)]="username">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        [(ngModel)]="username"
+      />
     </div>
 
     <div class="input-group">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required [(ngModel)]="password">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="password"
+      />
     </div>
 
     <button type="submit">Login</button>
+
+    <div class="options">
+      <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+      <span class="divider">|</span>
+      <a href="#" class="no-account">Pas de compte ?</a>
+    </div>
   </form>
 </div>
