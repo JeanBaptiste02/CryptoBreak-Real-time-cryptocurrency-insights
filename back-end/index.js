@@ -9,7 +9,7 @@ const port = 4000;
 
 // Connexion à la base de données MongoDB
 mongoose.connect(
-  "mongodb+srv://Talatizi-Kamel:Password00@cluster0.pjoriq0.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://jeanbaptistedamodarane:c'estmonmotdepassededb@cluster0.btolbk4.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
