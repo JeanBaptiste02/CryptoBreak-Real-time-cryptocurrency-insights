@@ -41,7 +41,7 @@ exports.login = (req, res, next) => {
           // Créez un token
           const token = jwt.sign(
             { userId: user._id, email: user.email },
-            "votre_secret_key_secrete",
+            "844f4b3bf504d6511e1c147ce9e5895233783bceb34dad9081ba3e0f92a376b8",
             { expiresIn: "24h" } // Optionnel : définissez une expiration pour le cookie
           );
 
@@ -81,4 +81,12 @@ exports.login = (req, res, next) => {
         details: findError.message,
       });
     });
+};
+
+exports.logout = (req, res) => {
+  // Supprimez le cookie en fixant une date d'expiration passée
+  res.clearCookie("token");
+
+  // Répondez avec succès
+  res.status(200).json({ message: "Déconnexion réussie" });
 };
