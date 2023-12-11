@@ -30,6 +30,5 @@ app.listen(port, () => {
 });
 
 app.use(bodyParser.json());
-//app.use("/api/user/register", UserRoutes);
 app.use("/api/users", UserRoutes);
 module.exports = app;
