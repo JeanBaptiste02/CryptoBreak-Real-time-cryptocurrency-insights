@@ -10,6 +10,6 @@ export class ConnectService {
   constructor(private http: HttpClient) {}
 
   login(userData: any) {
-    return this.http.post(`${this.apiUrl}/register`, { user: userData });
+    return this.http.post(`${this.apiUrl}/login`, { user: userData });
   }
 }

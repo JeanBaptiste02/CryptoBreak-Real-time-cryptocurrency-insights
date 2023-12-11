@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ConnectComponent } from './connect/connect.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, WelcomePageComponent, ConnectComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
