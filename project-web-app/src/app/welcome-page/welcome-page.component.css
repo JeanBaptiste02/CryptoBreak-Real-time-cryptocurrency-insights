@@ -1,38 +1,58 @@
 .welcome-container {
-    margin-top: 50px;
-    color: white;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 65%;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-    color: #ffffff;
-  }
-  
-  p {
-    font-size: 1.2em;
-    color: #bebebe;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #3C3C3C;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: rgb(73, 208, 6);
-    color: black;
-    transition: 0.8s;
-  }
-  
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+span {
+  color: rgb(0 126 255);
+}
+
+p {
+  font-size: 1.2em;
+  color: rgb(160, 160, 160);
+  margin-bottom: 30px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.feature-item {
+  width: 200px;
+  margin: 20px;
+  text-align: center;
+}
+
+img {
+  width: 100px; /* Adjust the size of the images */
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.2em;
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: rgb(0 126 255);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: #00adcc;
+}

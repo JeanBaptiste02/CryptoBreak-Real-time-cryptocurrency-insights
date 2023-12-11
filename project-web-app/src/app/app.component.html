@@ -1,16 +1,21 @@
-<header>
-  <div class="header-container">
-    <div class="logo-container">
-      <h1 class="header-title" (click)="goToHomePage()">CryptoHarbor</h1>
+<header class="header">
+  <div class="container">
+    <div class="header__logo">
+      <h1 class="header__logo__name" (click)="goToHomePage()">CryptoHarbor</h1>
     </div>
-    <nav class="nav-links">
-      <a routerLink="/">Home</a>
-      <a routerLink="/about">About</a>
-      <a routerLink="/contact">Contact</a>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li class="header__item"><a (click)="goToHomePage()">General</a></li>
+        <li class="header__item"><a (click)="goToAboutPage()">about</a></li>
+        <li class="header__item"><a (click)="goToContactPage()">contact</a></li>
+      </ul>
     </nav>
-    <div class="auth-container">
-      <a class="signin-btn" (click)="goToConnectPage()">Sign In</a>
-    </div>
+    <a (click)="goToConnectPage()">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/310/310818.png"
+        alt="login"
+      />
+    </a>
   </div>
 </header>
 
@@ -27,7 +32,7 @@
           <li><a href="#">privacy policy</a></li>
         </ul>
       </div>
-      
+
       <div class="footer-col">
         <h4>Account</h4>
         <ul>

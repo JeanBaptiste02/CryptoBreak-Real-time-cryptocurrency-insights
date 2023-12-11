@@ -19,4 +19,12 @@ export class AppComponent {
   goToConnectPage() {
     this.router.navigate(['connectpage']);
   }
+
+  goToAboutPage() {
+    this.router.navigate(['aboutpage']);
+  }
+
+  goToContactPage() {
+    //
+  }
 }
