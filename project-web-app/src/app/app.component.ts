@@ -25,6 +25,10 @@ export class AppComponent {
   }
 
   goToContactPage() {
-    //
+    this.router.navigate(['connectpage']);
+  }
+
+  goToCryptoCurrencyListPage() {
+    this.router.navigate(['cryptocurrencypage']);
   }
 }

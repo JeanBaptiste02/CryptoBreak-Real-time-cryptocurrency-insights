@@ -1,0 +1,37 @@
+<div class="page-container">
+  <div class="left-section">
+    <h1>Tableau</h1>
+    <table class="my_table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>ID</th>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Current Price</th>
+          <th>View details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crypto of cryptocurrencies">
+          <td>
+            <img [src]="crypto.image" alt="{{ crypto.name }}" width="50" />
+          </td>
+          <td>{{ crypto.id }}</td>
+          <td>{{ crypto.symbol }}</td>
+          <td>{{ crypto.name }}</td>
+          <td>{{ crypto.current_price }}</td>
+          <td><button (click)="showDetails(crypto)">View details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="right-section">
+    <h1>Détails</h1>
+    <div *ngIf="selectedCrypto" class="detail-container">
+      <app-cryptomonnaie-detail
+        [selectedCrypto]="selectedCrypto"
+      ></app-cryptomonnaie-detail>
+    </div>
+  </div>
+</div>

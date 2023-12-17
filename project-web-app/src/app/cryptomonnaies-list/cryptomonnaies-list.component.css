@@ -1,0 +1,41 @@
+h1 {
+  color: white;
+}
+
+th {
+  background: #2e2e2e;
+  color: white;
+}
+
+th,
+td,
+tr {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+td {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+.my_table {
+  margin-top: 40px;
+  border-collapse: collapse;
+  align-items: center;
+  flex: 1;
+}
+
+.page-container {
+  display: flex;
+}
+
+.left-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-section {
+  flex: 1;
+  padding: 20px;
+}
