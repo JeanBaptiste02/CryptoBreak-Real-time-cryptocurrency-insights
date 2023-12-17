@@ -31,7 +31,15 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
     CryptomonnaiesListComponent,
     CryptomonnaieDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

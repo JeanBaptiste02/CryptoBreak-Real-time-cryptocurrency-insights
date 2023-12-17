@@ -1,33 +1,81 @@
 <div class="page-container">
   <div class="left-section">
     <h1>Tableau</h1>
-    <table class="my_table">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>ID</th>
-          <th>Symbol</th>
-          <th>Name</th>
-          <th>Current Price</th>
-          <th>View details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let crypto of cryptocurrencies">
-          <td>
-            <img [src]="crypto.image" alt="{{ crypto.name }}" width="50" />
-          </td>
-          <td>{{ crypto.id }}</td>
-          <td>{{ crypto.symbol }}</td>
-          <td>{{ crypto.name }}</td>
-          <td>{{ crypto.current_price }}</td>
-          <td><button (click)="showDetails(crypto)">View details</button></td>
-        </tr>
-      </tbody>
+
+    <div
+      class="error-message"
+      *ngIf="loadingError"
+      style="display: flex; align-items: center"
+    >
+      <p
+        style="
+          color: red;
+          font-weight: bold;
+          font-size: 25px;
+          margin-right: 10px;
+        "
+      >
+        {{ loadingError }}
+      </p>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/4457/4457164.png"
+        alt="Error Image"
+        style="width: 30px; height: 30px"
+      />
+    </div>
+
+    <table class="my_table" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let crypto">
+          <img [src]="crypto.image" alt="{{ crypto.name }}" width="50" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let crypto">{{ crypto.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Symbol</th>
+        <td mat-cell *matCellDef="let crypto">{{ crypto.symbol }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let crypto">{{ crypto.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="current_price">
+        <th mat-header-cell *matHeaderCellDef>Current Price</th>
+        <td mat-cell *matCellDef="let crypto">{{ crypto.current_price }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>View details</th>
+        <td mat-cell *matCellDef="let crypto">
+          <button (click)="showDetails(crypto)">
+            View detailsㅤ<i class="fa fa-info-circle" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 25, 50, 100]"
+      [pageSize]="6"
+      showFirstLastButtons
+      style="color: white"
+    ></mat-paginator>
   </div>
+
   <div class="right-section">
     <h1>Détails</h1>
+
     <div *ngIf="selectedCrypto">
       <h2>Selected Crypto Details:</h2>
       <p>Symbol: {{ selectedCrypto.symbol }}</p>
