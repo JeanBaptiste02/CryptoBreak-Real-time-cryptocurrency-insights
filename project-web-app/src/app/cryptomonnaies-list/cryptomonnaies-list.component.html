@@ -28,10 +28,16 @@
   </div>
   <div class="right-section">
     <h1>Détails</h1>
-    <div *ngIf="selectedCrypto" class="detail-container">
-      <app-cryptomonnaie-detail
-        [selectedCrypto]="selectedCrypto"
-      ></app-cryptomonnaie-detail>
+    <div *ngIf="selectedCrypto">
+      <h2>Selected Crypto Details:</h2>
+      <p>Symbol: {{ selectedCrypto.symbol }}</p>
+      <p>Name: {{ selectedCrypto.name }}</p>
+      <p>Current Price: {{ selectedCrypto.current_price }}</p>
+      <div class="detail-container">
+        <app-cryptomonnaie-detail
+          [selectedCrypto]="selectedCrypto"
+        ></app-cryptomonnaie-detail>
+      </div>
     </div>
   </div>
 </div>

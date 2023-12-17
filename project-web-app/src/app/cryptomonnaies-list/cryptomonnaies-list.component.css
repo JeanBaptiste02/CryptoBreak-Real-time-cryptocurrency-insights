@@ -2,6 +2,13 @@ h1 {
   color: white;
 }
 
+h2 {
+  color: rgb(195, 195, 195);
+}
+p {
+  color: white;
+}
+
 th {
   background: #2e2e2e;
   color: white;
