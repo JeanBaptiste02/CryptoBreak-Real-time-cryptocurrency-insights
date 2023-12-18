@@ -5,8 +5,10 @@ import { ConnectComponent } from './connect/connect.component';
 import { AboutComponent } from './about/about.component';
 import { ContactpageComponent } from './contactpage/contactpage.component';
 import { CryptomonnaiesListComponent } from './cryptomonnaies-list/cryptomonnaies-list.component';
+import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonnaie-detail.component';
 
 const routes: Routes = [
+  { path: 'detailspage/:id', component: CryptomonnaieDetailComponent },
   { path: 'cryptocurrencypage', component: CryptomonnaiesListComponent },
   { path: 'contactpage', component: ContactpageComponent },
   { path: 'aboutpage', component: AboutComponent },

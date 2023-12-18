@@ -1,3 +1,34 @@
+<div class="sub-header">
+  <marquee
+    behavior="scroll"
+    onmouseover="stop()"
+    onmouseout="start()"
+    loop="infinite"
+    direction="left"
+  >
+    <div class="row">
+      <ng-container *ngFor="let row of bannerData">
+        <div class="col-1">
+          <div class="card">
+            <img [src]="row.image" width="100" class="img-fluid" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ row.symbol | uppercase }}
+                <span class="text-danger"
+                  >{{ row.market_cap_change_percentage_24h }}%</span
+                >
+              </h5>
+              <p class="card-text">
+                {{ row.current_price | currency : currency }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </marquee>
+</div>
+
 <div class="page-container">
   <div class="left-section">
     <h1>CryptoCurrency Table</h1>
@@ -81,26 +112,9 @@
       <p>Symbol: {{ selectedCrypto.symbol }}</p>
       <p>Name: {{ selectedCrypto.name }}</p>
       <p>Current Price: {{ selectedCrypto.current_price }}</p>
-
-      <div *ngIf="selectedCryptoGraphData">
-        <h2>Price Trends Graph:</h2>
-        <div
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <canvas
-            baseChart
-            [datasets]="lineChartData.datasets"
-            [labels]="lineChartData.labels"
-            [options]="{
-              elements: { point: { radius: 1 } },
-              plugins: { legend: { display: true } }
-            }"
-            [type]="lineChartType"
-            [legend]="true"
-          >
-          </canvas>
-        </div>
-      </div>
+      <button (click)="gotoDetails(selectedCrypto)" mat-button>
+        Go to Details
+      </button>
     </div>
   </div>
 </div>

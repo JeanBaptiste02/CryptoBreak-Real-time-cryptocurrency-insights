@@ -8,6 +8,7 @@ import { CryptomonnaieDetailComponent } from '../cryptomonnaie-detail/cryptomonn
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cryptomonnaies-list',
@@ -16,6 +17,7 @@ import { ApiService } from '../service/api.service';
 })
 export class CryptomonnaiesListComponent implements OnInit {
   cryptocurrencies: any[] = [];
+  bannerData: any = [];
   currency: string = 'EUR';
   selectedCrypto: any | null = null;
   loadingError: string | null = null;
@@ -64,11 +66,18 @@ export class CryptomonnaiesListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
+    this.getBannerData();
     this.getAllData();
     this.getGraphData(this.days);
+  }
+
+  getBannerData() {
+    this.api.getTrendingCurrency(this.currency).subscribe((res) => {
+      this.bannerData = res;
+    });
   }
 
   getAllData() {
@@ -134,7 +143,11 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.api
       .getGrpahicalCurrencyData(crypto.id, this.currency, this.days)
       .subscribe((graphData) => {
-        this.selectedCryptoGraphData = graphData; // Assurez-vous que "selectedCryptoGraphData" est déclaré dans votre classe.
+        this.selectedCryptoGraphData = graphData;
       });
+  }
+
+  gotoDetails(row: any) {
+    this.router.navigate(['detailspage', row.id]);
   }
 }
