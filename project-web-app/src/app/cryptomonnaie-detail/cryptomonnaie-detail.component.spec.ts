@@ -8,10 +8,9 @@ describe('CryptomonnaieDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CryptomonnaieDetailComponent]
-    })
-    .compileComponents();
-    
+      declarations: [CryptomonnaieDetailComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CryptomonnaieDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

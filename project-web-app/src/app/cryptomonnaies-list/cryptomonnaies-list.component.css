@@ -1,10 +1,11 @@
 h1 {
-  color: white;
+  color: rgb(0, 169, 255);
 }
 
 h2 {
-  color: rgb(195, 195, 195);
+  color: rgb(0, 242, 186);
 }
+
 p {
   color: white;
 }
@@ -12,6 +13,7 @@ p {
 th {
   background: #2e2e2e;
   color: white;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 th,
@@ -19,11 +21,22 @@ td,
 tr {
   border: 1px solid #ccc;
   padding: 8px;
+  transition: border-color 0.3s, padding 0.3s;
+}
+
+th {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(0, 242, 186);
+  text-align: center;
 }
 
 td {
   background-color: #1f1f1f;
   color: white;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s, font-size 0.3s;
+  text-align: center;
 }
 
 .my_table {
@@ -31,17 +44,43 @@ td {
   border-collapse: collapse;
   align-items: center;
   flex: 1;
+  overflow: hidden; /* Pour cacher les éléments qui dépassent */
+}
+
+.my_table th,
+.my_table td {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.my_table tbody tr:nth-child(even) td {
+  background-color: #2c2c2c; /* Une couleur légèrement différente pour les lignes paires */
+}
+
+.my_table tbody tr:hover th,
+.my_table tbody tr:hover td {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.my_table th,
+.my_table td {
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .page-container {
   display: flex;
 }
 
-.left-section {
-  flex: 1;
-  padding: 20px;
-}
-
+.left-section,
 .right-section {
   flex: 1;
   padding: 20px;
@@ -58,13 +97,13 @@ button {
   font-size: 16px;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 button:hover {
   background-color: rgb(0, 242, 186);
   color: black;
-  transition: 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .my_table button {

@@ -39,6 +39,7 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

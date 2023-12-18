@@ -1,6 +1,6 @@
 <div class="page-container">
   <div class="left-section">
-    <h1>Tableau</h1>
+    <h1>CryptoCurrency Table</h1>
 
     <div
       class="error-message"
@@ -74,17 +74,32 @@
   </div>
 
   <div class="right-section">
-    <h1>Détails</h1>
+    <h1>Details</h1>
 
     <div *ngIf="selectedCrypto">
       <h2>Selected Crypto Details:</h2>
       <p>Symbol: {{ selectedCrypto.symbol }}</p>
       <p>Name: {{ selectedCrypto.name }}</p>
       <p>Current Price: {{ selectedCrypto.current_price }}</p>
-      <div class="detail-container">
-        <app-cryptomonnaie-detail
-          [selectedCrypto]="selectedCrypto"
-        ></app-cryptomonnaie-detail>
+
+      <div *ngIf="selectedCryptoGraphData">
+        <h2>Price Trends Graph:</h2>
+        <div
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <canvas
+            baseChart
+            [datasets]="lineChartData.datasets"
+            [labels]="lineChartData.labels"
+            [options]="{
+              elements: { point: { radius: 1 } },
+              plugins: { legend: { display: true } }
+            }"
+            [type]="lineChartType"
+            [legend]="true"
+          >
+          </canvas>
+        </div>
       </div>
     </div>
   </div>
