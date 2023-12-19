@@ -1,22 +1,19 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Contenu</th>
-      <th>Date de publication</th>
-      <th>image</th>
-      <th>Source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let news of newsData">
-      <td>{{ news.title }}</td>
-      <td>{{ news.description }}</td>
-      <td>{{ news.content }}</td>
-      <td>{{ news.pubDate }}</td>
-      <td>{{ news.image_url }}</td>
-      <td>{{ news.source_id }}</td>
-    </tr>
-  </tbody>
-</table>
+<h1 style="padding: 20px">News and Update</h1>
+
+<div class="card-container">
+  <div class="card" *ngFor="let news of newsData">
+    <div class="img">
+      <img src="{{ news.image_url }}" alt="{{ news.title }}" />
+    </div>
+    <div class="content">
+      <h2 class="title">{{ news.title }}</h2>
+      <p class="card-pubDate">{{ news.pubDate }}</p>
+      <p class="sub-title">{{ news.description }}</p>
+      <p>
+        <button *ngIf="!news.expanded" (click)="toggleContent(news)">
+          Read More
+        </button>
+      </p>
+    </div>
+  </div>
+</div>

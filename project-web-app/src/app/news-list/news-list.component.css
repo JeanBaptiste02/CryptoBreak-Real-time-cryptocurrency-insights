@@ -1,16 +1,115 @@
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+:root {
+  --border: 1px solid #ddd;
+  --text: #333;
+  --sub-text: #666;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
+h1 {
+  color: rgb(0, 169, 255);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -10px;
+}
+
+.card {
+  flex: 1 0 calc(25% - 20px);
+  margin: 10px;
+  background: var(--card-bg);
+  border: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.card:nth-child(odd) {
+  color: rgb(31, 171, 0);
+  background-color: #101010;
+}
+
+.card:nth-child(even) {
+  color: rgb(31, 171, 0);
+  background-color: #131313;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .img {
+  height: 200px;
+  margin: 16px;
+  width: calc(100% - 32px);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.card .img:hover {
+  filter: brightness(75%);
+}
+
+.card .img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+}
+
+.card .img img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.card .content {
+  padding: 10px 20px;
+}
+
+.content .title {
+  text-align: justify;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.card .content .sub-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--sub-text);
+  line-height: 20px;
   text-align: left;
 }
 
-th {
-  background-color: #f2f2f2;
+.card .content p {
+  text-align: justify;
+  margin: 10px 0;
+  color: var(--sub-text);
+  line-height: 1.5;
+  max-height: 6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.card .content button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 10px;
+  right: 24px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: bottom 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.card:hover button {
+  bottom: 15px;
+  opacity: 1;
 }

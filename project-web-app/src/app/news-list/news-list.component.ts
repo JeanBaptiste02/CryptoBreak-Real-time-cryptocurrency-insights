@@ -25,4 +25,16 @@ export class NewsListComponent {
       }
     );
   }
+
+  extractThreeSentences(content: string): string {
+    const sentences = content.split(/[.!?]/);
+
+    const firstThreeSentences = sentences.slice(0, 3).join('. ');
+
+    return firstThreeSentences;
+  }
+
+  toggleContent(news: any) {
+    news.expanded = !news.expanded;
+  }
 }
