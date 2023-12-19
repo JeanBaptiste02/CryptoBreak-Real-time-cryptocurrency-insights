@@ -4,7 +4,6 @@ import { throwError } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CryptomonnaieDetailComponent } from '../cryptomonnaie-detail/cryptomonnaie-detail.component';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../service/api.service';
@@ -17,12 +16,12 @@ import { Router } from '@angular/router';
 })
 export class CryptomonnaiesListComponent implements OnInit {
   cryptocurrencies: any[] = [];
-  bannerData: any = [];
+  trendingData: any = [];
   currency: string = 'EUR';
-  selectedCrypto: any | null = null;
+  chosenCrypto: any | null = null;
   loadingError: string | null = null;
-  dataSource = new MatTableDataSource<any>([]);
-  displayedColumns: string[] = [
+  dataSources = new MatTableDataSource<any>([]);
+  showcolumns: string[] = [
     'image',
     'id',
     'symbol',
@@ -31,10 +30,10 @@ export class CryptomonnaiesListComponent implements OnInit {
     'actions',
   ];
 
-  coinData: any;
-  coinId!: string;
-  days: number = 30;
-  selectedCryptoGraphData: any;
+  coinInformation: any;
+  uniqueCoinId!: string;
+  dataDurationInDays: number = 30;
+  chosenCryptoGraphData: any;
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -62,25 +61,24 @@ export class CryptomonnaiesListComponent implements OnInit {
   };
   public lineChartType: ChartType = 'line';
   @ViewChild(BaseChartDirective) myLineChart!: BaseChartDirective;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getBannerData();
-    this.getAllData();
-    this.getGraphData(this.days);
+    this.getTrendingDatas();
+    this.getCompleteDatas();
+    this.getGraphData(this.dataDurationInDays);
   }
 
-  getBannerData() {
+  getTrendingDatas() {
     this.api.getTrendingCurrency(this.currency).subscribe((res) => {
-      this.bannerData = res;
+      this.trendingData = res;
     });
   }
 
-  getAllData() {
+  getCompleteDatas() {
     this.api
       .getCurrency(this.currency)
       .pipe(
@@ -95,9 +93,9 @@ export class CryptomonnaiesListComponent implements OnInit {
           this.cryptocurrencies = res;
           console.log('every datas');
           console.log(res);
-          this.dataSource = new MatTableDataSource<any>(this.cryptocurrencies);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+          this.dataSources = new MatTableDataSource<any>(this.cryptocurrencies);
+          this.dataSources.paginator = this.paginator;
+          this.dataSources.sort = this.sort;
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -105,10 +103,14 @@ export class CryptomonnaiesListComponent implements OnInit {
       );
   }
 
-  getGraphData(days: number) {
-    this.days = days;
+  getGraphData(dataDurationInDays: number) {
+    this.dataDurationInDays = dataDurationInDays;
     this.api
-      .getGrpahicalCurrencyData(this.coinId, this.currency, this.days) // Renommer la méthode à "getGraphicalCurrencyData"
+      .getGrpahicalCurrencyData(
+        this.uniqueCoinId,
+        this.currency,
+        this.dataDurationInDays
+      )
       .subscribe((res) => {
         setTimeout(() => {
           this.myLineChart.chart?.update();
@@ -129,7 +131,9 @@ export class CryptomonnaiesListComponent implements OnInit {
                 date.getHours() > 12
                   ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                   : `${date.getHours()}:${date.getMinutes()} AM`;
-              return this.days === 1 ? time : date.toLocaleDateString();
+              return this.dataDurationInDays === 1
+                ? time
+                : date.toLocaleDateString();
             })
           );
         });
@@ -139,11 +143,15 @@ export class CryptomonnaiesListComponent implements OnInit {
   showDetails(crypto: any): void {
     console.log('Selected Crypto:', crypto);
 
-    this.selectedCrypto = crypto;
+    this.chosenCrypto = crypto;
     this.api
-      .getGrpahicalCurrencyData(crypto.id, this.currency, this.days)
+      .getGrpahicalCurrencyData(
+        crypto.id,
+        this.currency,
+        this.dataDurationInDays
+      )
       .subscribe((graphData) => {
-        this.selectedCryptoGraphData = graphData;
+        this.chosenCryptoGraphData = graphData;
       });
   }
 

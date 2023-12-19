@@ -11,10 +11,10 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrl: './cryptomonnaie-detail.component.css',
 })
 export class CryptomonnaieDetailComponent {
-  coinData: any;
-  coinId!: string;
-  days: number = 30;
-  currency: string = 'EUR';
+  coinInformation: any;
+  uniqueCoinId!: string;
+  dataDurationInDays: number = 30;
+  chosenCurrency: string = 'EUR';
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -45,40 +45,44 @@ export class CryptomonnaieDetailComponent {
   @ViewChild(BaseChartDirective) myLineChart!: BaseChartDirective;
 
   constructor(
-    private api: ApiService,
+    private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
     private DetailExtractCurrencyService: DetailExtractCurrencyService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((val) => {
-      this.coinId = val['id'];
+      this.uniqueCoinId = val['id'];
     });
-    this.getCoinData();
-    this.getGraphData(this.days);
+    this.getCoinInfo();
+    this.getGraphData(this.dataDurationInDays);
     this.DetailExtractCurrencyService.getCurrency().subscribe((val) => {
-      this.currency = val;
-      this.getGraphData(this.days);
-      this.getCoinData();
+      this.chosenCurrency = val;
+      this.getGraphData(this.dataDurationInDays);
+      this.getCoinInfo();
     });
   }
 
-  getCoinData() {
-    this.api.getCurrencyById(this.coinId).subscribe((res) => {
-      console.log(this.coinData);
-      if (this.currency === 'USD') {
+  getCoinInfo() {
+    this.apiService.getCurrencyById(this.uniqueCoinId).subscribe((res) => {
+      console.log(this.coinInformation);
+      if (this.chosenCurrency === 'USD') {
         res.market_data.current_price.inr = res.market_data.current_price.usd;
         res.market_data.market_cap.inr = res.market_data.market_cap.usd;
       }
       res.market_data.current_price.inr = res.market_data.current_price.inr;
       res.market_data.market_cap.inr = res.market_data.market_cap.inr;
-      this.coinData = res;
+      this.coinInformation = res;
     });
   }
-  getGraphData(days: number) {
-    this.days = days;
-    this.api
-      .getGrpahicalCurrencyData(this.coinId, this.currency, this.days)
+  getGraphData(dataDurationInDays: number) {
+    this.dataDurationInDays = dataDurationInDays;
+    this.apiService
+      .getGrpahicalCurrencyData(
+        this.uniqueCoinId,
+        this.chosenCurrency,
+        this.dataDurationInDays
+      )
       .subscribe((res) => {
         setTimeout(() => {
           this.myLineChart.chart?.update();
@@ -92,7 +96,9 @@ export class CryptomonnaieDetailComponent {
             date.getHours() > 12
               ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
               : `${date.getHours()}: ${date.getMinutes()} AM`;
-          return this.days === 1 ? time : date.toLocaleDateString();
+          return this.dataDurationInDays === 1
+            ? time
+            : date.toLocaleDateString();
         });
       });
   }

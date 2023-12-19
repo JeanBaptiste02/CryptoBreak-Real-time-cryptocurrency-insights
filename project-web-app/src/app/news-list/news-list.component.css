@@ -72,7 +72,7 @@ h1 {
 .content .title {
   text-align: justify;
   font-size: 25px;
-  font-weight: 500;
+  font-weight: bold;
   color: var(--text);
 }
 

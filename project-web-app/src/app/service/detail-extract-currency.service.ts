@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DetailExtractCurrencyService {
   private selectedCurrency$: BehaviorSubject<string> =
-    new BehaviorSubject<string>('INR');
+    new BehaviorSubject<string>('EUR');
   constructor() {}
 
   getCurrency() {
     return this.selectedCurrency$.asObservable();
   }
+
   setCurrency(currency: string) {
     this.selectedCurrency$.next(currency);
   }

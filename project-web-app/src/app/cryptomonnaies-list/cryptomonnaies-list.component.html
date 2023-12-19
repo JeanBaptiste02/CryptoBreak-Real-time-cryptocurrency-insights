@@ -8,7 +8,7 @@
     scrollamount="15"
   >
     <div class="marquee-container">
-      <ng-container *ngFor="let row of bannerData">
+      <ng-container *ngFor="let row of trendingData">
         <div class="card">
           <img [src]="row.image" width="50" class="img-fluid" alt="" />
           <div
@@ -57,7 +57,7 @@
       />
     </div>
 
-    <table class="my_table" mat-table [dataSource]="dataSource" matSort>
+    <table class="my_table" mat-table [dataSource]="dataSources" matSort>
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef>Image</th>
         <td mat-cell *matCellDef="let crypto">
@@ -94,8 +94,8 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="showcolumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: showcolumns"></tr>
     </table>
 
     <mat-paginator
@@ -109,12 +109,12 @@
   <div class="right-section">
     <h1>Details</h1>
 
-    <div *ngIf="selectedCrypto">
+    <div *ngIf="chosenCrypto">
       <h2>Selected Crypto Details:</h2>
-      <p>Symbol: {{ selectedCrypto.symbol }}</p>
-      <p>Name: {{ selectedCrypto.name }}</p>
-      <p>Current Price: {{ selectedCrypto.current_price }}</p>
-      <button (click)="gotoDetails(selectedCrypto)" mat-button>
+      <p>Symbol: {{ chosenCrypto.symbol }}</p>
+      <p>Name: {{ chosenCrypto.name }}</p>
+      <p>Current Price: {{ chosenCrypto.current_price }}</p>
+      <button (click)="gotoDetails(chosenCrypto)" mat-button>
         Go to Details
       </button>
     </div>
