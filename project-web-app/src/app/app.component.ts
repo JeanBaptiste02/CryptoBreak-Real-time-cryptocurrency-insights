@@ -31,4 +31,8 @@ export class AppComponent {
   goToCryptoCurrencyListPage() {
     this.router.navigate(['cryptocurrencypage']);
   }
+
+  goToNewsPage() {
+    this.router.navigate(['newspage']);
+  }
 }

@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NgChartsModule } from 'ng2-charts';
 import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonnaie-detail.component';
+import { NewsListComponent } from './news-list/news-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
     ContactpageComponent,
     CryptomonnaiesListComponent,
     CryptomonnaieDetailComponent,
+    NewsListComponent,
   ],
   imports: [
     BrowserModule,
