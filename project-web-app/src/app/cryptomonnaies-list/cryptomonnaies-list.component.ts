@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-cryptomonnaies-list',
   templateUrl: './cryptomonnaies-list.component.html',
-  styleUrls: ['./cryptomonnaies-list.component.css'], // Utiliser "styleUrls" au lieu de "styleUrl"
+  styleUrls: ['./cryptomonnaies-list.component.css'],
 })
 export class CryptomonnaiesListComponent implements OnInit {
   cryptocurrencies: any[] = [];
@@ -34,7 +34,7 @@ export class CryptomonnaiesListComponent implements OnInit {
   coinData: any;
   coinId!: string;
   days: number = 30;
-  selectedCryptoGraphData: any; // Ajoutez cette déclaration
+  selectedCryptoGraphData: any;
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
