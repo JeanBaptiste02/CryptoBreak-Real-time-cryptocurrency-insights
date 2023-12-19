@@ -1,27 +1,29 @@
 <div class="sub-header">
+  <h1 style="padding: 20px">Trending currency</h1>
   <marquee
     behavior="scroll"
     onmouseover="stop()"
     onmouseout="start()"
     loop="infinite"
-    direction="left"
+    scrollamount="15"
   >
-    <div class="row">
+    <div class="marquee-container">
       <ng-container *ngFor="let row of bannerData">
-        <div class="col-1">
-          <div class="card">
-            <img [src]="row.image" width="100" class="img-fluid" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ row.symbol | uppercase }}
-                <span class="text-danger"
-                  >{{ row.market_cap_change_percentage_24h }}%</span
-                >
-              </h5>
-              <p class="card-text">
-                {{ row.current_price | currency : currency }}
-              </p>
-            </div>
+        <div class="card">
+          <img [src]="row.image" width="50" class="img-fluid" alt="" />
+          <div
+            class="card-body"
+            style="color: rgb(0, 170, 255); font-weight: bold"
+          >
+            <h6 class="card-title">
+              {{ row.symbol | uppercase }}
+              <span class="text-danger" style="color: rgb(0, 242, 186)"
+                >{{ row.market_cap_change_percentage_24h }}%</span
+              >
+            </h6>
+            <p class="card-text">
+              {{ row.current_price | currency : currency }}
+            </p>
           </div>
         </div>
       </ng-container>

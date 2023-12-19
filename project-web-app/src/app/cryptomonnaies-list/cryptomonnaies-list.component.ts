@@ -86,7 +86,7 @@ export class CryptomonnaiesListComponent implements OnInit {
       .pipe(
         retry(3),
         catchError((error) => {
-          this.loadingError = 'Error loading data. Please try again later.';
+          this.loadingError = 'Error loading datas. Please try again later.';
           return throwError(error);
         })
       )

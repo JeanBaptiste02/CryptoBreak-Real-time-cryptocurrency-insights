@@ -116,3 +116,45 @@ button:hover {
 div.mat-mdc-paginator-range-actions {
   color: white;
 }
+.sub-header {
+  overflow: hidden;
+}
+
+.marquee-container {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card {
+  display: inline-block;
+  margin-right: 5px;
+  width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 8px;
+}
+
+.card-title {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.card-text {
+  font-size: 15px;
+}
+
+.text-danger {
+  font-size: 15px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
