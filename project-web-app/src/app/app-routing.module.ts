@@ -7,8 +7,12 @@ import { ContactpageComponent } from './contactpage/contactpage.component';
 import { CryptomonnaiesListComponent } from './cryptomonnaies-list/cryptomonnaies-list.component';
 import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonnaie-detail.component';
 import { NewsListComponent } from './news-list/news-list.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { CommunitySectionComponent } from './community-section/community-section.component';
 
 const routes: Routes = [
+  { path: 'communitypage', component: CommunitySectionComponent },
+  { path: 'walletpage', component: WalletComponent },
   { path: 'newspage', component: NewsListComponent },
   { path: 'detailspage/:id', component: CryptomonnaieDetailComponent },
   { path: 'cryptocurrencypage', component: CryptomonnaiesListComponent },

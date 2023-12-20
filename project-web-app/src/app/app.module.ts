@@ -21,6 +21,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { NgChartsModule } from 'ng2-charts';
 import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonnaie-detail.component';
 import { NewsListComponent } from './news-list/news-list.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { CommunitySectionComponent } from './community-section/community-section.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { NewsListComponent } from './news-list/news-list.component';
     CryptomonnaiesListComponent,
     CryptomonnaieDetailComponent,
     NewsListComponent,
+    WalletComponent,
+    CommunitySectionComponent,
   ],
   imports: [
     BrowserModule,

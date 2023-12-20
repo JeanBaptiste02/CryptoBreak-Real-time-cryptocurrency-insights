@@ -1,38 +1,52 @@
 .welcome-container {
-    margin-top: 50px;
-    color: white;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 65%;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-    color: #ffffff;
-  }
-  
-  p {
-    font-size: 1.2em;
-    color: #bebebe;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #3C3C3C;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: rgb(73, 208, 6);
-    color: black;
-    transition: 0.8s;
-  }
-  
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #232323;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: rgb(0, 195, 255);
+  text-align: center;
+}
+
+h2 {
+  color: #00d327;
+}
+
+p {
+  color: #e1e1e1;
+  line-height: 1.6;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feature-item {
+  background-color: #181818;
+  border: 1px solid #212121;
+  border-radius: 8px;
+  padding: 15px;
+  flex: 1 1 300px;
+  transition: transform 0.5s;
+  width: auto;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+}
+
+h3 {
+  color: rgb(0, 213, 213);
+}
+
+h4 {
+  color: #ffffff;
+}

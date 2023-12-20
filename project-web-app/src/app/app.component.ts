@@ -35,4 +35,14 @@ export class AppComponent {
   goToNewsPage() {
     this.router.navigate(['newspage']);
   }
+
+  goToMarketPage() {}
+
+  goToWalletPage() {
+    this.router.navigate(['walletpage']);
+  }
+
+  goToCommunityPage() {
+    this.router.navigate(['communitypage']);
+  }
 }

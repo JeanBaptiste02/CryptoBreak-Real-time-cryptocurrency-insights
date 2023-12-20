@@ -1,0 +1,55 @@
+h1 {
+  color: rgb(0, 195, 255);
+  text-align: center;
+}
+
+h2 {
+  color: rgba(255, 0, 242, 0.855);
+}
+
+h3 {
+  color: rgb(0, 213, 213);
+}
+
+p {
+  color: #555;
+}
+
+.forum {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.forum-post {
+  background-color: #212121;
+  border: 1px solid #212121;
+  border-radius: 8px;
+  padding: 15px;
+  transition: transform 0.9s;
+  width: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.forum-post:hover {
+  transform: scale(1.01);
+}
+
+h4 {
+  color: #ffffff;
+}
+
+.forum-link {
+  display: block;
+  color: #008080;
+  text-decoration: none;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.forum-link:hover {
+  color: #00ff91;
+}

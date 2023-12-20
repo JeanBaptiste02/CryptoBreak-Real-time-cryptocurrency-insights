@@ -6,19 +6,27 @@
     <nav class="header__nav">
       <ul class="header__menu">
         <li class="header__item"><a (click)="goToHomePage()">Home</a></li>
-        <li class="header__item">
-          <a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a>
+        <li class="header__item dropdown">
+          <a href="#" class="dropbtn"
+            >Crypto <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-content">
+            <a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a>
+            <a (click)="goToNewsPage()">News/Updates</a>
+            <a (click)="goToMarketPage()">Market</a>
+            <a (click)="goToWalletPage()">Wallet</a>
+          </div>
         </li>
         <li class="header__item">
-          <a (click)="goToNewsPage()">News/Updates</a>
+          <a (click)="goToCommunityPage()">Break-Community</a>
         </li>
-        <li class="header__item"><a (click)="goToAboutPage()">about</a></li>
-        <li class="header__item"><a (click)="goToContactPage()">contact</a></li>
+        <li class="header__item"><a (click)="goToAboutPage()">About</a></li>
+        <li class="header__item"><a (click)="goToContactPage()">Contact</a></li>
       </ul>
     </nav>
     <a (click)="goToConnectPage()">
       <img
-        src="https://cdn-icons-png.flaticon.com/512/310/310818.png"
+        src="https://cdn-icons-png.flaticon.com/512/11919/11919808.png"
         alt="login"
       />
     </a>

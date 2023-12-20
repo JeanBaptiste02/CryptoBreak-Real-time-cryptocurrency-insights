@@ -1,5 +1,6 @@
+<h1>Crypto Center</h1>
 <div class="sub-header">
-  <h1 style="padding: 20px">Trending currency</h1>
+  <h2 style="padding: 20px">Trending currency</h2>
   <marquee
     behavior="scroll"
     onmouseover="stop()"
@@ -33,7 +34,7 @@
 
 <div class="page-container">
   <div class="left-section">
-    <h1>CryptoCurrency Table</h1>
+    <h2>CryptoCurrency Table</h2>
 
     <div
       class="error-message"
@@ -107,10 +108,10 @@
   </div>
 
   <div class="right-section">
-    <h1>Details</h1>
+    <h2>Details</h2>
 
     <div *ngIf="chosenCrypto">
-      <h2>Selected Crypto Details:</h2>
+      <h3>Selected Crypto Details:</h3>
       <p>Symbol: {{ chosenCrypto.symbol }}</p>
       <p>Name: {{ chosenCrypto.name }}</p>
       <p>Current Price: {{ chosenCrypto.current_price }}</p>
