@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose-unique-validator": "^4.0.0"
