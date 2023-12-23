@@ -37,8 +37,7 @@ exports.fetchCoins = async (req, res) => {
     res.status(200).json(selectedData); // Afficher les données
   } catch (error) {
     if (error.response && error.response.status === 429) {
-      // Si l'erreur est 429 (Too Many Requests), renvoyer les données stockées
-      const storedData = await Coin.find(); // Assurez-vous d'adapter cette requête en fonction de votre modèle
+      const storedData = await Coin.find();
       res.status(200).json(storedData);
     } else {
       console.error(
