@@ -3,7 +3,6 @@ const Coin = require("../models/coin");
 
 exports.fetchCoins = async (req, res) => {
   try {
-    // Faites la requête vers l'API CoinGecko
     const response = await axios.get(
       "https://api.coingecko.com/api/v3/coins/markets",
       {
@@ -15,7 +14,6 @@ exports.fetchCoins = async (req, res) => {
       }
     );
 
-    // Sélectionnez uniquement les champs pertinents
     const selectedData = response.data.map((coin) => ({
       id: coin.id,
       symbol: coin.symbol,
