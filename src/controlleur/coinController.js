@@ -34,14 +34,20 @@ exports.fetchCoins = async (req, res) => {
 
     await Coin.insertMany(selectedData);
 
-    res.status(200).json(selectedData); //show data
+    res.status(200).json(selectedData); // Afficher les données
   } catch (error) {
-    console.error(
-      "Erreur lors de la récupération et du stockage des données :",
-      error
-    );
-    res
-      .status(500)
-      .json({ error: "Erreur interne du serveur", details: error.message });
+    if (error.response && error.response.status === 429) {
+      // Si l'erreur est 429 (Too Many Requests), renvoyer les données stockées
+      const storedData = await Coin.find(); // Assurez-vous d'adapter cette requête en fonction de votre modèle
+      res.status(200).json(storedData);
+    } else {
+      console.error(
+        "Erreur lors de la récupération et du stockage des données :",
+        error
+      );
+      res
+        .status(500)
+        .json({ error: "Erreur interne du serveur", details: error.message });
+    }
   }
 };

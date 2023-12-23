@@ -10,6 +10,6 @@ router.post("/register", Userctrl.signin);
 
 router.post("/logout", Userctrl.logout);
 
-router.get("/fetch-coins", CoinCtrl.fetchCoins);
+router.get("/cryptos", CoinCtrl.fetchCoins);
 
 module.exports = router;
