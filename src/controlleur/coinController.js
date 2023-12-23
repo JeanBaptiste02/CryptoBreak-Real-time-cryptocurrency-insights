@@ -3,10 +3,19 @@ const Coin = require("../models/coin");
 
 exports.fetchCoins = async (req, res) => {
   try {
+    // Faites la requête vers l'API CoinGecko
     const response = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=EUR&order=market_cap_desc&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets",
+      {
+        params: {
+          vs_currency: "EUR",
+          order: "market_cap_desc",
+          sparkline: false,
+        },
+      }
     );
 
+    // Sélectionnez uniquement les champs pertinents
     const selectedData = response.data.map((coin) => ({
       id: coin.id,
       symbol: coin.symbol,
@@ -27,9 +36,7 @@ exports.fetchCoins = async (req, res) => {
 
     await Coin.insertMany(selectedData);
 
-    res
-      .status(200)
-      .json({ message: "Données récupérées et stockées avec succès." });
+    res.status(200).json(selectedData); //show data
   } catch (error) {
     console.error(
       "Erreur lors de la récupération et du stockage des données :",

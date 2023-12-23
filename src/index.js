@@ -8,6 +8,7 @@ const CoinRoutes = require("./routes/routes");
 const app = express();
 const port = 4000;
 
+// Connexion à la base de données MongoDB
 mongoose.connect(
   "mongodb+srv://jeanbaptistedamodarane:c'estmonmotdepassededb@cluster0.btolbk4.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
