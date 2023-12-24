@@ -18,6 +18,7 @@ exports.fetchCoins = async (req, res) => {
       id: coin.id,
       symbol: coin.symbol,
       name: coin.name,
+      image: coin.image,
       current_price: coin.current_price,
       market_cap: coin.market_cap,
       total_volume: coin.total_volume,

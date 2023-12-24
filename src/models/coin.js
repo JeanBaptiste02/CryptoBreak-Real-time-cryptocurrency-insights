@@ -4,6 +4,7 @@ const coinSchema = new mongoose.Schema({
   id: String,
   symbol: String,
   name: String,
+  image: String,
   current_price: Number,
   market_cap: Number,
   total_volume: Number,
