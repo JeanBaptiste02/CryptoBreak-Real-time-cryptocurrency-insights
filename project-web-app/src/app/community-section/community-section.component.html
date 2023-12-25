@@ -10,11 +10,10 @@
     <div class="channel"># Crypto</div>
     <div class="channel"># News</div>
     <div class="channel"># FAQ</div>
-    <!-- Add more channels as needed -->
   </div>
   <div id="main-content">
     <div class="chat">
-      <div class="message">
+      <div *ngFor="let message of messages" class="message">
         <div class="message-content">
           <div style="display: flex">
             <img
@@ -22,86 +21,9 @@
               src="https://via.placeholder.com/40"
               alt="User Avatar"
             />
-            <div class="username">Username</div>
+            <div class="username">{{ message.username }}</div>
           </div>
-          <div class="content">This is a sample message.</div>
-        </div>
-      </div>
-
-      <div class="message">
-        <div class="message-content">
-          <div style="display: flex; margin-top: 12px">
-            <img
-              class="user-avatar"
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-            />
-            <div class="username">Username</div>
-          </div>
-          <div class="content">
-            This is a sample message.This is a sample message.This is a sample
-            message.This is a sample message.This is a sample message.This is a
-            sample message.This is a sample message.This is a sample
-            message.This is a sample message.This is a sample message.This is a
-            sample message.This is a sample message.This is a sample
-            message.This is a sample message.
-          </div>
-        </div>
-      </div>
-
-      <div class="message">
-        <div class="message-content">
-          <div style="display: flex; margin-top: 12px">
-            <img
-              class="user-avatar"
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-            />
-            <div class="username">Username</div>
-          </div>
-          <div class="content">This is a sample message.</div>
-        </div>
-      </div>
-
-      <div class="message">
-        <div class="message-content">
-          <div style="display: flex; margin-top: 12px">
-            <img
-              class="user-avatar"
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-            />
-            <div class="username">Username</div>
-          </div>
-          <div class="content">This is a sample message.</div>
-        </div>
-      </div>
-
-      <div class="message">
-        <div class="message-content">
-          <div style="display: flex; margin-top: 12px">
-            <img
-              class="user-avatar"
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-            />
-            <div class="username">Username</div>
-          </div>
-          <div class="content">This is a sample message.</div>
-        </div>
-      </div>
-
-      <div class="message">
-        <div class="message-content">
-          <div style="display: flex; margin-top: 12px">
-            <img
-              class="user-avatar"
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-            />
-            <div class="username">Username</div>
-          </div>
-          <div class="content">This is a sample message.</div>
+          <div class="content">{{ message.content }}</div>
         </div>
       </div>
     </div>
@@ -111,8 +33,9 @@
         type="text"
         class="message-input"
         placeholder="Type your message..."
+        [(ngModel)]="newMessage"
       />
-      <button class="send-button">Send</button>
+      <button class="send-button" (click)="sendMessage()">Send</button>
     </div>
   </div>
 
