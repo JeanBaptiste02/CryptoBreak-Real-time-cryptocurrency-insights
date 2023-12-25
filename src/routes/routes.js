@@ -4,14 +4,15 @@ const router = express.Router();
 const Userctrl = require("../controlleur/userControlleur");
 const CoinCtrl = require("../controlleur/coinController");
 const TrendCoinCtrl = require("../controlleur/trendingcoinsController");
+const { authenticate } = require("../authMiddleware/authMiddleware");
 
 router.post("/login", Userctrl.login);
 
 router.post("/register", Userctrl.signin);
 
-router.post("/logout", Userctrl.logout);
+router.post("/logout", authenticate, Userctrl.logout);
 
-router.get("/profile", Userctrl.getProfile);
+router.get("/profile", authenticate, Userctrl.getProfile);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
 

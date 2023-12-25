@@ -142,3 +142,29 @@ exports.getProfile = (req, res, next) => {
     }
   );
 };
+
+exports.getProfile = async (req, res) => {
+  const userId = req.user.userId; // userId provient du token
+
+  try {
+    // Utilisez la méthode getUserById pour récupérer l'utilisateur
+    const user = await exports.getUserById(userId);
+
+    // Retournez les informations du profil de l'utilisateur
+    res.status(200).json({
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      defaultCurrency: user.defaultCurrency,
+      cryptocurrencies: user.cryptocurrencies,
+      keywords: user.keywords,
+    });
+  } catch (error) {
+    console.error("Erreur lors de la récupération de l'utilisateur :", error);
+    res.status(500).json({
+      error:
+        "Erreur interne du serveur lors de la récupération de l'utilisateur",
+      details: error.message,
+    });
+  }
+};
