@@ -46,6 +46,7 @@ import { CommunitySectionComponent } from './community-section/community-section
     MatSortModule,
     MatTableModule,
     NgChartsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

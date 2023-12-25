@@ -19,7 +19,7 @@
             <h6 class="card-title">
               {{ row.symbol | uppercase }}
               <span class="text-danger" style="color: rgb(0, 242, 186)"
-                >{{ row.market_cap_change_percentage_24h }}%</span
+                >{{ row.market_cap }} %</span
               >
             </h6>
             <p class="card-text">
@@ -110,12 +110,84 @@
   <div class="right-section">
     <h2>Details</h2>
 
-    <div *ngIf="chosenCrypto">
+    <div *ngIf="chosenCrypto" class="detailsdiv">
       <h3>Selected Crypto Details:</h3>
-      <p>Symbol: {{ chosenCrypto.symbol }}</p>
-      <p>Name: {{ chosenCrypto.name }}</p>
-      <p>Current Price: {{ chosenCrypto.current_price }}</p>
-      <button (click)="gotoDetails(chosenCrypto)" mat-button>
+      <!-- Ajoutez autant de balises p que nécessaire pour afficher toutes les informations que vous souhaitez -->
+      <table class="crypto-table">
+        <tr>
+          <td style="background-color: #3a3a3a">Symbol:</td>
+          <td>{{ chosenCrypto.symbol }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Name:</td>
+          <td>{{ chosenCrypto.name }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Current Price:</td>
+          <td>
+            {{
+              chosenCrypto.current_price | currency : "USD" : "symbol" : "1.2-2"
+            }}
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Market Cap:</td>
+          <td>{{ chosenCrypto.market_cap | number : "1.0-0" }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Market Cap Rank:</td>
+          <td>{{ chosenCrypto.market_cap_rank }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Total Volume:</td>
+          <td>{{ chosenCrypto.total_volume | number : "1.0-0" }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">High 24h:</td>
+          <td>
+            {{ chosenCrypto.high_24h | currency : "USD" : "symbol" : "1.2-2" }}
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Low 24h:</td>
+          <td>
+            {{ chosenCrypto.low_24h | currency : "USD" : "symbol" : "1.2-2" }}
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Price Change 24h:</td>
+          <td>
+            {{
+              chosenCrypto.price_change_24h
+                | currency : "USD" : "symbol" : "1.2-2"
+            }}
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Market Cap Change 24h:</td>
+          <td>{{ chosenCrypto.market_cap_change_24h | number : "1.0-0" }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">
+            Market Cap Change Percentage 24h:
+          </td>
+          <td>{{ chosenCrypto.market_cap_change_percentage_24h }}%</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Circulating Supply:</td>
+          <td>{{ chosenCrypto.circulating_supply | number : "1.0-0" }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #3a3a3a">Last Updated:</td>
+          <td>{{ chosenCrypto.last_updated | date : "medium" }}</td>
+        </tr>
+      </table>
+
+      <button
+        (click)="gotoDetails(chosenCrypto)"
+        mat-button
+        style="margin-top: 20px"
+      >
         Go to Details
       </button>
     </div>

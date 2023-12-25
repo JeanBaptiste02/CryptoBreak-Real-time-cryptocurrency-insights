@@ -20,7 +20,6 @@ th {
   color: white;
   transition: background-color 0.3s, color 0.3s;
 }
-
 th,
 td,
 tr {
@@ -41,7 +40,6 @@ td {
   color: white;
   font-size: 18px;
   transition: background-color 0.3s, color 0.3s, font-size 0.3s;
-  text-align: center;
 }
 
 .my_table {
@@ -70,7 +68,9 @@ td {
 }
 
 .my_table th,
-.my_table td {
+.my_table td,
+.my_table td:nth-child(7), /* La 7ème colonne (delete) */
+.my_table td:nth-child(8)  /* La 8ème colonne (addCrypto) */ {
   animation: fadeInUp 0.5s forwards;
 }
 
@@ -162,4 +162,31 @@ div.mat-mdc-paginator-range-actions {
 
 .card:hover {
   transform: scale(1.05);
+}
+
+.detailsdiv {
+  border: 1px solid #08ee00;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.crypto-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.crypto-table td {
+  padding: 10px;
+}
+
+/* Style the label column in the table */
+.label {
+  font-weight: bold;
 }

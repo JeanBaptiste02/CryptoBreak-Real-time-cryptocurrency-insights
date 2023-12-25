@@ -68,39 +68,65 @@ export class CryptomonnaiesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTrendingDatas();
+    this.fetchCoins();
     this.getCompleteDatas();
     this.getGraphData(this.dataDurationInDays);
+    this.deleteCrypto(this);
+    this.addCrypto();
   }
 
-  getTrendingDatas() {
-    this.api.getTrendingCurrency(this.currency).subscribe((res) => {
-      this.trendingData = res;
-    });
+  fetchCoins() {
+    this.api.getCoins().subscribe(
+      (data) => {
+        this.cryptocurrencies = data;
+        console.log('Coins from backend:', this.cryptocurrencies);
+      },
+      (error) => {
+        console.error('Error fetching coins:', error);
+      }
+    );
   }
 
   getCompleteDatas() {
     this.api
-      .getCurrency(this.currency)
+      .getCoins()
       .pipe(
         retry(3),
         catchError((error) => {
-          this.loadingError = 'Error loading datas. Please try again later.';
+          console.error('Error fetching data:', error);
           return throwError(error);
         })
       )
       .subscribe(
         (res) => {
-          this.cryptocurrencies = res;
-          console.log('every datas');
-          console.log(res);
-          this.dataSources = new MatTableDataSource<any>(this.cryptocurrencies);
-          this.dataSources.paginator = this.paginator;
-          this.dataSources.sort = this.sort;
+          if (Array.isArray(res)) {
+            this.cryptocurrencies = res;
+            console.log('Every datas:', this.cryptocurrencies);
+            this.dataSources = new MatTableDataSource<any>(
+              this.cryptocurrencies
+            );
+            this.dataSources.paginator = this.paginator;
+            this.dataSources.sort = this.sort;
+          } else {
+            console.error('Invalid data format:', res);
+          }
         },
         (error) => {
           console.error('Error fetching data:', error);
         }
       );
+  }
+
+  getTrendingDatas() {
+    this.api.getTrendingCurrency(this.currency).subscribe(
+      (res) => {
+        console.log('Trending Data:', res);
+        this.trendingData = res;
+      },
+      (error) => {
+        console.error('Error fetching trending data:', error);
+      }
+    );
   }
 
   getGraphData(dataDurationInDays: number) {
@@ -158,4 +184,8 @@ export class CryptomonnaiesListComponent implements OnInit {
   gotoDetails(row: any) {
     this.router.navigate(['detailspage', row.id]);
   }
+
+  deleteCrypto(crypto: any) {}
+
+  addCrypto() {}
 }
