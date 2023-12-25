@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const UserRoutes = require("./routes/routes");
 const CoinRoutes = require("./routes/routes");
 
@@ -28,6 +29,7 @@ app.listen(port, () => {
 });
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use("/api/users", UserRoutes);
 app.use("/api/coins", CoinRoutes);
 module.exports = app;

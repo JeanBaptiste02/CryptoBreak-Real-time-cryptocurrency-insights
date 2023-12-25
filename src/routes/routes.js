@@ -11,6 +11,8 @@ router.post("/register", Userctrl.signin);
 
 router.post("/logout", Userctrl.logout);
 
+router.get("/profile", Userctrl.getProfile);
+
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
 router.get("/cryptos/id", TrendCoinCtrl.fetchCoinsTrendings);
