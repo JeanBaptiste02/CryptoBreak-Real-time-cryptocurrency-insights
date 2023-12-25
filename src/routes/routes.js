@@ -1,21 +1,27 @@
+// routes.js
 const express = require("express");
 const router = express.Router();
 
-const Userctrl = require("../controlleur/userControlleur");
+const UserCtrl = require("../controlleur/userControlleur");
 const CoinCtrl = require("../controlleur/coinController");
 const TrendCoinCtrl = require("../controlleur/trendingcoinsController");
+const MessageCtrl = require("../controlleur/messageController");
 const { authenticate } = require("../authMiddleware/authMiddleware");
 
-router.post("/login", Userctrl.login);
+router.post("/login", UserCtrl.login);
 
-router.post("/register", Userctrl.signin);
+router.post("/register", UserCtrl.signin);
 
-router.post("/logout", authenticate, Userctrl.logout);
+router.post("/logout", authenticate, UserCtrl.logout);
 
-router.get("/profile", authenticate, Userctrl.getProfile);
+router.get("/profile", authenticate, UserCtrl.getProfile);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
 router.get("/cryptos/id", TrendCoinCtrl.fetchCoinsTrendings);
+
+// Dans routes.js
+router.get("/messages", MessageCtrl.getAllMessages);
+router.post("/messages", MessageCtrl.createMessage);
 
 module.exports = router;
