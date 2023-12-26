@@ -16,6 +16,8 @@ router.post("/logout", authenticate, UserCtrl.logout);
 
 router.get("/profile", authenticate, UserCtrl.getProfile);
 
+router.put("/updateProfile", authenticate, UserCtrl.updateProfile);
+
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
 router.get("/cryptos/id", TrendCoinCtrl.fetchCoinsTrendings);

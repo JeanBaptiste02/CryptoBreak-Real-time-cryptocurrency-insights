@@ -168,3 +168,45 @@ exports.getProfile = async (req, res) => {
     });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  const userId = req.user.userId; // userId provient du token
+
+  try {
+    // Utilisez la méthode getUserById pour récupérer l'utilisateur
+    const user = await exports.getUserById(userId);
+
+    // Vérifiez si l'utilisateur tente de mettre à jour le rôle
+    if (req.body.role) {
+      return res.status(403).json({
+        error: "Vous n'avez pas les autorisations nécessaires pour mettre à jour le rôle",
+      });
+    }
+
+    // Mettez à jour les champs du profil avec les nouvelles valeurs
+    user.name = req.body.name || user.name;
+    user.defaultCurrency = req.body.defaultCurrency || user.defaultCurrency;
+    user.cryptocurrencies = req.body.cryptocurrencies || user.cryptocurrencies;
+    user.keywords = req.body.keywords || user.keywords;
+
+    // Sauvegardez les modifications dans la base de données
+    await user.save();
+
+    // Retournez les informations mises à jour du profil de l'utilisateur
+    res.status(200).json({
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      defaultCurrency: user.defaultCurrency,
+      cryptocurrencies: user.cryptocurrencies,
+      keywords: user.keywords,
+      message: "Profil mis à jour avec succès",
+    });
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du profil de l'utilisateur :", error);
+    res.status(500).json({
+      error: "Erreur interne du serveur lors de la mise à jour du profil",
+      details: error.message,
+    });
+  }
+};
