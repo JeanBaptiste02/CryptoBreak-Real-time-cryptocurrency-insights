@@ -23,6 +23,7 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
 import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CommunitySectionComponent } from './community-section/community-section
     MatTableModule,
     NgChartsModule,
     BrowserAnimationsModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

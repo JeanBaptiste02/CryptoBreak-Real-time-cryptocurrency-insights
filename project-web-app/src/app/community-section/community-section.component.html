@@ -5,11 +5,21 @@
   style="height: 500px; margin-bottom: 10px; background-color: rgb(14, 14, 14)"
 >
   <div id="sidebar">
-    <div class="channel active"># General</div>
-    <div class="channel"># Random</div>
-    <div class="channel"># Crypto</div>
-    <div class="channel"># News</div>
-    <div class="channel"># FAQ</div>
+    <div class="user-list">
+      <h2>Members</h2>
+      <div class="online-users">
+        <ul>
+          <li *ngFor="let user of onlineUsers">
+            <img
+              class="user-avatar"
+              src="{{ user.avatar }}"
+              alt="User Avatar"
+            />
+            <span class="username">{{ user.username }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div id="main-content">
     <div class="chat">
@@ -29,13 +39,29 @@
     </div>
 
     <div class="input-container">
+      <div class="logo-container">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/13496/13496175.png"
+          alt="Logo"
+          title="Sécurisé par Breaks Corporation LTD"
+        />
+      </div>
+
+      <div class="emoji-section" *ngIf="showEmojiPopup">
+        <div *ngFor="let emoji of emojis" (click)="selectEmoji(emoji)">
+          {{ emoji }}
+        </div>
+      </div>
       <input
         type="text"
         class="message-input"
         placeholder="Type your message..."
         [(ngModel)]="newMessage"
       />
-      <button class="send-button" (click)="sendMessage()">Send</button>
+      <div class="emoji-container">
+        <button class="emoji-button" (click)="toggleEmojiPopup()">😊</button>
+      </div>
+      <button class="send-button" (click)="sendMessageWithEmoji()">Send</button>
     </div>
   </div>
 

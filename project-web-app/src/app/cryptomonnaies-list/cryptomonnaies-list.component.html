@@ -154,15 +154,7 @@
             {{ chosenCrypto.low_24h | currency : "USD" : "symbol" : "1.2-2" }}
           </td>
         </tr>
-        <tr>
-          <td style="background-color: #3a3a3a">Price Change 24h:</td>
-          <td>
-            {{
-              chosenCrypto.price_change_24h
-                | currency : "USD" : "symbol" : "1.2-2"
-            }}
-          </td>
-        </tr>
+
         <tr>
           <td style="background-color: #3a3a3a">Market Cap Change 24h:</td>
           <td>{{ chosenCrypto.market_cap_change_24h | number : "1.0-0" }}</td>
