@@ -166,8 +166,6 @@ export class CommunitySectionComponent implements OnInit {
   }
 
   getOnlineUsers() {
-    // Remplacez ce code par la logique réelle pour récupérer les utilisateurs en ligne
-    // par exemple, à partir d'un service Angular
     this.onlineUsers = [{ username: 'User1' }, { username: 'User2' }];
   }
 }
