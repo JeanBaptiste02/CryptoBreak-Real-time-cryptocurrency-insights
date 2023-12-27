@@ -6,7 +6,10 @@ const UserCtrl = require("../controlleur/userControlleur");
 const CoinCtrl = require("../controlleur/coinController");
 const TrendCoinCtrl = require("../controlleur/trendingcoinsController");
 const MessageCtrl = require("../controlleur/messageController");
-const { authenticate } = require("../authMiddleware/authMiddleware");
+const {
+  authenticate,
+  authorizeAdmin,
+} = require("../authMiddleware/authMiddleware");
 
 router.post("/login", UserCtrl.login);
 
@@ -17,6 +20,13 @@ router.post("/logout", authenticate, UserCtrl.logout);
 router.get("/profile", authenticate, UserCtrl.getProfile);
 
 router.put("/updateProfile", authenticate, UserCtrl.updateProfile);
+
+router.put(
+  "/updateRole",
+  authenticate,
+  authorizeAdmin,
+  UserCtrl.updateUserRole
+);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
 

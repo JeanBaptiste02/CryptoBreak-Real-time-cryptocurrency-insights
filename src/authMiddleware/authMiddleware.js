@@ -22,3 +22,19 @@ exports.authenticate = (req, res, next) => {
     }
   );
 };
+
+// authMiddleware.js
+
+exports.authorizeAdmin = (req, res, next) => {
+  const user = req.user;
+  console.log(user);
+
+  if (!user || user.role !== "admin") {
+    return res.status(403).json({
+      error:
+        "Vous n'avez pas les autorisations nécessaires pour accéder à cette ressource",
+    });
+  }
+
+  next();
+};

@@ -179,7 +179,8 @@ exports.updateProfile = async (req, res) => {
     // Vérifiez si l'utilisateur tente de mettre à jour le rôle
     if (req.body.role) {
       return res.status(403).json({
-        error: "Vous n'avez pas les autorisations nécessaires pour mettre à jour le rôle",
+        error:
+          "Vous n'avez pas les autorisations nécessaires pour mettre à jour le rôle",
       });
     }
 
@@ -203,9 +204,67 @@ exports.updateProfile = async (req, res) => {
       message: "Profil mis à jour avec succès",
     });
   } catch (error) {
-    console.error("Erreur lors de la mise à jour du profil de l'utilisateur :", error);
+    console.error(
+      "Erreur lors de la mise à jour du profil de l'utilisateur :",
+      error
+    );
     res.status(500).json({
       error: "Erreur interne du serveur lors de la mise à jour du profil",
+      details: error.message,
+    });
+  }
+};
+
+exports.updateUserRole = async (req, res) => {
+  const userId = req.user.userId; // ID de l'utilisateur authentifié
+
+  try {
+    // Vérifiez si l'utilisateur authentifié est administrateur
+    const authenticatedUser = await User.findById(userId);
+
+    if (authenticatedUser.role !== "admin") {
+      return res.status(403).json({
+        error:
+          "Vous n'avez pas les autorisations nécessaires pour accéder à cette ressource",
+      });
+    }
+
+    // Récupérez l'ID de l'utilisateur cible à partir du corps de la requête
+    const targetUserId = req.body.userId;
+    console.log(targetUserId);
+
+    // Utilisez la méthode getUserById pour récupérer l'utilisateur cible
+    const targetUser = await exports.getUserById(targetUserId);
+    console.log(targetUser);
+
+    // Vérifiez si l'utilisateur cible existe
+    if (!targetUser) {
+      return res.status(404).json({
+        error: "L'utilisateur cible n'a pas été trouvé",
+      });
+    }
+
+    // Mettez à jour le rôle de l'utilisateur cible
+    targetUser.role = req.body.role;
+
+    // Sauvegardez les modifications dans la base de données
+    await targetUser.save();
+
+    // Retournez les informations mises à jour de l'utilisateur cible
+    res.status(200).json({
+      email: targetUser.email,
+      name: targetUser.name,
+      role: targetUser.role,
+      message: "Rôle de l'utilisateur mis à jour avec succès",
+    });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la mise à jour du rôle de l'utilisateur :",
+      error
+    );
+    res.status(500).json({
+      error:
+        "Erreur interne du serveur lors de la mise à jour du rôle de l'utilisateur",
       details: error.message,
     });
   }
