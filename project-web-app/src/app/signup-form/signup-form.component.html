@@ -1,12 +1,22 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-  <label for="email">Email:</label>
-  <input type="email" id="email" formControlName="email" />
+<div class="signup-container">
+  <form class="Signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h2>Create Account</h2>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" formControlName="password" />
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" />
+    </div>
 
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name" />
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" />
+    </div>
 
-  <button type="submit">Submit</button>
-</form>
+    <div class="input-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" />
+    </div>
+
+    <button type="submit">Signup</button>
+  </form>
+</div>
