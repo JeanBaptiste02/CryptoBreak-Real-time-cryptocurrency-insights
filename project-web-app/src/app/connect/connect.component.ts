@@ -1,4 +1,3 @@
-// connect.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConnectService } from './connect.service';

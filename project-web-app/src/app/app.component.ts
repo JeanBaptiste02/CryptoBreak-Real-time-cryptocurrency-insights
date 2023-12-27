@@ -20,6 +20,10 @@ export class AppComponent {
     this.router.navigate(['connectpage']);
   }
 
+  goToSignupPage() {
+    this.router.navigate(['signupPage']);
+  }
+
   goToAboutPage() {
     this.router.navigate(['aboutpage']);
   }
