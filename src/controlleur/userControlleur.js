@@ -2,25 +2,47 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-exports.signin = (req, res, next) => {
-  bcrypt
-    .hash(req.body.password, 10)
-    .then((hash) => {
-      const user = new User({
-        email: req.body.email,
-        password: hash,
-        name: req.body.name,
-        role: req.body.role,
-        defaultCurrency: req.body.defaultCurrency,
-        cryptocurrencies: req.body.cryptocurrencies,
-        keywords: req.body.keywords,
+exports.signin = async (req, res, next) => {
+  try {
+    // Vérifiez d'abord si l'e-mail existe déjà
+    const existingUser = await User.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      // L'e-mail existe déjà, renvoyez une erreur
+      return res.status(400).json({ error: "L'e-mail existe déjà." });
+    }
+
+    // L'e-mail n'existe pas, continuez avec la création de l'utilisateur
+    const hash = await bcrypt.hash(req.body.password, 10);
+
+    const user = new User({
+      email: req.body.email,
+      password: hash,
+      name: req.body.name,
+      role: req.body.role,
+      defaultCurrency: req.body.defaultCurrency,
+      cryptocurrencies: req.body.cryptocurrencies,
+      keywords: req.body.keywords,
+    });
+
+    await user.save();
+
+    res.status(201).json({ message: "Utilisateur créé !" });
+  } catch (err) {
+    if (err.name === "ValidationError" && err.errors && err.errors.email) {
+      // Erreur de validation, probablement due à l'absence d'un e-mail
+      return res.status(400).json({ error: "L'e-mail est obligatoire." });
+    }
+
+    // Gestion d'autres erreurs
+    console.error("Erreur lors de la création de l'utilisateur :", err);
+    res
+      .status(500)
+      .json({
+        error:
+          "Erreur interne du serveur lors de la création de l'utilisateur.",
       });
-      user
-        .save()
-        .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((err) => res.status(400).json({ error: err }));
-    })
-    .catch((error) => res.status(500).json({ error }));
+  }
 };
 
 exports.login = (req, res, next) => {
