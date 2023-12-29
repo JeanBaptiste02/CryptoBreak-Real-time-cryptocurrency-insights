@@ -10,6 +10,7 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
 import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'communitypage', component: CommunitySectionComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'aboutpage', component: AboutComponent },
   { path: 'connectpage', component: ConnectComponent },
   { path: 'signupPage', component: SignupFormComponent },
+  { path: 'ProfilePage', component: ProfileComponent },
   { path: '', component: WelcomePageComponent },
 ];
 

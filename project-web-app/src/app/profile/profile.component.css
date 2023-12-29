@@ -1,0 +1,21 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Utilisez 100% de la hauteur de la vue pour centrer verticalement */
+}
+
+.profile-content {
+  text-align: center;
+  max-width: 300px; /* Ajustez la largeur maximale selon vos besoins */
+}
+
+.profile-field {
+  margin-bottom: 10px;
+}
+
+.profile-field label {
+  display: block;
+  margin-bottom: 5px;
+}
