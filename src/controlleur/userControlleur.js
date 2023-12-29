@@ -36,12 +36,9 @@ exports.signin = async (req, res, next) => {
 
     // Gestion d'autres erreurs
     console.error("Erreur lors de la création de l'utilisateur :", err);
-    res
-      .status(500)
-      .json({
-        error:
-          "Erreur interne du serveur lors de la création de l'utilisateur.",
-      });
+    res.status(500).json({
+      error: "Erreur interne du serveur lors de la création de l'utilisateur.",
+    });
   }
 };
 
@@ -171,6 +168,7 @@ exports.getProfile = async (req, res) => {
   try {
     // Utilisez la méthode getUserById pour récupérer l'utilisateur
     const user = await exports.getUserById(userId);
+    console.log(user);
 
     // Retournez les informations du profil de l'utilisateur
     res.status(200).json({
@@ -197,14 +195,6 @@ exports.updateProfile = async (req, res) => {
   try {
     // Utilisez la méthode getUserById pour récupérer l'utilisateur
     const user = await exports.getUserById(userId);
-
-    // Vérifiez si l'utilisateur tente de mettre à jour le rôle
-    if (req.body.role) {
-      return res.status(403).json({
-        error:
-          "Vous n'avez pas les autorisations nécessaires pour mettre à jour le rôle",
-      });
-    }
 
     // Mettez à jour les champs du profil avec les nouvelles valeurs
     user.name = req.body.name || user.name;
