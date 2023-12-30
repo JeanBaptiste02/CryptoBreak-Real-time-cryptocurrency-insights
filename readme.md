@@ -2,6 +2,8 @@
 
 CryptoBreak est une application web construite avec Angular qui fournit des informations en temps réel sur les cryptomonnaies. Les utilisateurs peuvent explorer le marché actuel, suivre les tendances, rester informés des dernières actualités, créer un compte et participer à un forum communautaire.
 
+![CryptoBreak Logo](project_img.png)
+
 ## Table des matières
 
 - [Commencer](#commencer)
