@@ -1,6 +1,5 @@
-// profile.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../service/profile.service';
 import { Profile } from './profile.model';
 
 @Component({

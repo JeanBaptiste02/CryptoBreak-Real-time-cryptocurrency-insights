@@ -15,20 +15,19 @@ export class ConnectService {
   login(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { user: userData }).pipe(
       map((response: any) => {
-        // Gérer la réponse du serveur, ici vous pouvez effectuer des opérations comme la gestion du token
-        const token = response.token; // Assurez-vous que le nom du champ correspond à votre API
+        const token = response.token;
         if (token) {
-          // Stockez le token dans le cookie
           this.cookieService.set('token', token);
         }
-
-        // Vous pouvez également retourner d'autres données du serveur si nécessaire
         return response;
       }),
       catchError((error: any) => {
-        // Gérer les erreurs du serveur
         return throwError(error);
       })
     );
+  }
+
+  signup(formData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, formData);
   }
 }

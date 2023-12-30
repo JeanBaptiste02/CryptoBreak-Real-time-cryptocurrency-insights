@@ -12,8 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CookieService } from 'ngx-cookie-service'; // Ajout de cette ligne
-
+import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
@@ -25,7 +24,6 @@ import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonna
 import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -40,7 +38,6 @@ import { ProfileComponent } from './profile/profile.component';
     NewsListComponent,
     WalletComponent,
     CommunitySectionComponent,
-    SignupFormComponent,
     ProfileComponent,
   ],
   imports: [
