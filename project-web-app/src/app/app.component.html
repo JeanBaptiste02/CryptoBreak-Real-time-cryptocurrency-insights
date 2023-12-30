@@ -20,18 +20,21 @@
         <li class="header__item">
           <a (click)="goToCommunityPage()">Break-Community</a>
         </li>
-        <li class="header__item"><a (click)="goToAboutPage()">About</a></li>
-        <li class="header__item"><a (click)="goToContactPage()">Contact</a></li>
-        <li class="header__item"><a (click)="goToProfilePage()">Profile</a></li>
+        <li class="header__item dropdown">
+          <a href="#" class="dropbtn"
+            >Info <i class="fa fa-caret-down" aria-hidden="true"></i
+          ></a>
+          <div class="dropdown-content">
+            <a (click)="goToAboutPage()">About</a>
+            <a (click)="goToContactPage()">Contact</a>
+          </div>
+        </li>
+        <li class="header__item">
+          <a (click)="goToProfilePage()">My space</a>
+        </li>
       </ul>
     </nav>
     <a (click)="goToConnectPage()">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/11919/11919808.png"
-        alt="login"
-      />
-    </a>
-    <a (click)="goToSignupPage()">
       <img
         src="https://cdn-icons-png.flaticon.com/512/11919/11919808.png"
         alt="login"

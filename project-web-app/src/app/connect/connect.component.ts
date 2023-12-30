@@ -28,6 +28,10 @@ export class ConnectComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  toggleLoggedIn() {
+    this.loggedIn = !this.loggedIn;
+  }
+
   login(formData: any) {
     this.connectService
       .login({ email: this.username, password: this.password })
