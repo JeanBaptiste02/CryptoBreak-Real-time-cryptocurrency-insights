@@ -1,25 +1,41 @@
+<!-- profile.component.html -->
 <div *ngIf="user" class="profile-container">
-  <div class="profile-content">
-    <div class="profile-field">
-      <label>Email:</label>
-      <input type="text" [(ngModel)]="user.email" placeholder="Email" />
-    </div>
-    <div class="profile-field">
-      <label>Name:</label>
-      <input type="text" [(ngModel)]="user.name" placeholder="Name" />
-    </div>
-    <div class="profile-field">
-      <label>Role:</label>
-      <input type="text" [(ngModel)]="user.role" placeholder="Role" />
-    </div>
-    <div class="profile-field">
-      <label>Default Currency:</label>
-      <input
-        type="text"
-        [(ngModel)]="user.defaultCurrency"
-        placeholder="Default Currency"
-      />
+  <div class="menu-container">
+    <div class="menu">
+      <div class="menu-item" (click)="selectedMenuItem = 'coordonnees'">
+        Coordonnées
+      </div>
+      <div class="menu-item" (click)="selectedMenuItem = 'defaultCurrency'">
+        Default Currency
+      </div>
     </div>
   </div>
-  <button (click)="updateProfile()">Update</button>
+
+  <div class="content-container">
+    <div class="content">
+      <div *ngIf="selectedMenuItem === 'coordonnees'" class="profile-field">
+        <label class="label">Email:</label>
+        <input type="text" [(ngModel)]="user.email" placeholder="Email" />
+      </div>
+      <div *ngIf="selectedMenuItem === 'coordonnees'" class="profile-field">
+        <label class="label">Name:</label>
+        <input type="text" [(ngModel)]="user.name" placeholder="Name" />
+      </div>
+      <div *ngIf="selectedMenuItem === 'coordonnees'" class="profile-field">
+        <label class="label">Role:</label>
+        <input type="text" [(ngModel)]="user.role" placeholder="Role" />
+      </div>
+
+      <div *ngIf="selectedMenuItem === 'defaultCurrency'" class="profile-field">
+        <label class="label">Default Currency:</label>
+        <select [(ngModel)]="user.defaultCurrency" class="hoverable-menu">
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+          <!-- Ajoutez d'autres options selon vos besoins -->
+        </select>
+      </div>
+    </div>
+
+    <button (click)="updateProfile()">Update</button>
+  </div>
 </div>

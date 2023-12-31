@@ -1,3 +1,4 @@
+// profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../service/profile.service';
 import { Profile } from './profile.model';
@@ -9,6 +10,7 @@ import { Profile } from './profile.model';
 })
 export class ProfileComponent implements OnInit {
   user: Profile | null = null;
+  selectedMenuItem: 'coordonnees' | 'defaultCurrency' = 'coordonnees';
 
   constructor(private profileService: ProfileService) {}
 
