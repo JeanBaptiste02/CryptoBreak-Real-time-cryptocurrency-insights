@@ -25,6 +25,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotificationComponent } from './beandau-notification/beandau-notification.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProfileComponent } from './profile/profile.component';
     WalletComponent,
     CommunitySectionComponent,
     ProfileComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
