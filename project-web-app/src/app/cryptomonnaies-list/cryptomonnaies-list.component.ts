@@ -134,7 +134,7 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.api
       .getGrpahicalCurrencyData(
         this.uniqueCoinId,
-        this.currency,
+        //this.currency,
         this.dataDurationInDays
       )
       .subscribe((res) => {
@@ -173,7 +173,7 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.api
       .getGrpahicalCurrencyData(
         crypto.id,
-        this.currency,
+        //this.currency,
         this.dataDurationInDays
       )
       .subscribe((graphData) => {

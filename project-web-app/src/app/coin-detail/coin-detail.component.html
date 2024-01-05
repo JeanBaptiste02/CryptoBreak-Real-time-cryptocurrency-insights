@@ -1,0 +1,20 @@
+<section class="coin-detail_page">
+
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+  <div class="content">
+    <div>
+      <img class="coin-detail_image" src="{{ coin.image }}" alt="image logo" />
+    </div>
+
+    <div class="coin-detail_name">
+      <h1>{{ coin.name }}</h1>
+    </div>
+
+    <div class="coin-detail_description">
+      <h3 [innerHTML]="coin.description"></h3>
+    </div>
+
+    <app-line-chart></app-line-chart>
+  </div>
+</section>

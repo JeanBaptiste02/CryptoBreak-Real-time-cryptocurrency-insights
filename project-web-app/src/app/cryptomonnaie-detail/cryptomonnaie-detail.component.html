@@ -1,3 +1,5 @@
+<!--
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 details">
@@ -41,5 +43,26 @@
         </button>
       </div>
     </div>
+  </div>
+</div>
+-->
+
+<div class="chart" style="width: 100%">
+  <canvas id="myChart" #mychart></canvas>
+</div>
+
+<div class="col-md-8">
+  <div class="d-flex justify-content-around">
+    <button type="button" (click)="setTimeFrame(1)">24h</button>
+    <button type="button" (click)="setTimeFrame(30)">30 days</button>
+    <button type="button" (click)="setTimeFrame(90)">3 months</button>
+    <button type="button" (click)="setTimeFrame(365)">1 year</button>
+
+    <!--
+    <button (click)="getGraphData(1)" class="btn btn-custom">24 hours</button>
+    <button (click)="getGraphData(30)" class="btn btn-custom">30 days</button>
+    <button (click)="getGraphData(90)" class="btn btn-custom">90 days</button>
+    <button (click)="getGraphData(365)" class="btn btn-custom">1 year</button>
+    //-->
   </div>
 </div>

@@ -1,0 +1,37 @@
+.coin-detail_page {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.content {
+  max-width: 50%;
+}
+
+.coin-detail_image {
+  max-height: 175px;
+}
+
+.coin-detail_name {
+  color: white;
+}
+
+.coin-detail_description {
+  color: white;
+}
+
+@media (max-width: 70rem) {
+  .content {
+    max-width: 97%;
+  }
+
+  .coin-detail_image{
+    max-height: 130px;
+  }
+
+  .coin-detail_description{
+    font-size: 0.9rem;
+  }
+}
