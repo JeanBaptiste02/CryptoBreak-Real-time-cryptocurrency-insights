@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const UserRoutes = require("./routes/routes");
 const CoinRoutes = require("./routes/routes");
+const CryptoRoutes = require("./routes/routes");
 const MessageRoutes = require("./routes/routes");
 
 const app = express();
@@ -45,6 +46,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/api/users", UserRoutes);
+app.use("/api/crypto", CryptoRoutes);
 app.use("/api/coins", CoinRoutes);
 app.use("/messages", MessageRoutes);
 module.exports = app;

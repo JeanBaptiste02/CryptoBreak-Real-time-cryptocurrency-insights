@@ -4,6 +4,7 @@ const router = express.Router();
 
 const UserCtrl = require("../controlleur/userControlleur");
 const CoinCtrl = require("../controlleur/coinController");
+const CryptoCtrl = require("../controlleur/cryptosController");
 const TrendCoinCtrl = require("../controlleur/trendingcoinsController");
 const MessageCtrl = require("../controlleur/messageController");
 const {
@@ -27,6 +28,8 @@ router.put(
   authorizeAdmin,
   UserCtrl.updateUserRole
 );
+
+router.get("/init", CryptoCtrl.inisialize);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
