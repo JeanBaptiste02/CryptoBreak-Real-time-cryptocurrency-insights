@@ -1,6 +1,7 @@
 // profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../service/profile.service';
+import { NotificationService } from '../service/notification.service';
 import { Profile } from './profile.model';
 
 @Component({
@@ -12,7 +13,10 @@ export class ProfileComponent implements OnInit {
   user: Profile | null = null;
   selectedMenuItem: 'coordonnees' | 'defaultCurrency' = 'coordonnees';
 
-  constructor(private profileService: ProfileService) {}
+  constructor(
+    private profileService: ProfileService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.profileService.getProfile().subscribe((data) => {
@@ -25,6 +29,10 @@ export class ProfileComponent implements OnInit {
       this.profileService.updateProfile(this.user).subscribe(
         (response) => {
           console.log('Profile updated successfully:', response);
+          // Après la mise à jour, affichez la notification spécifique au profil
+          this.notificationService.showProfileUpdateNotification(
+            this.user?.name || 'Utilisateur'
+          );
         },
         (error) => {
           console.error('Error updating profile:', error);
