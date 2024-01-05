@@ -21,6 +21,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactpageComponent } from './contactpage/contactpage.component';
 import { CryptomonnaiesListComponent } from './cryptomonnaies-list/cryptomonnaies-list.component';
 import { CryptomonnaieDetailComponent } from './cryptomonnaie-detail/cryptomonnaie-detail.component';
+import { CoinDetailComponent } from './coin-detail/coin-detail.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
@@ -36,6 +38,8 @@ import { NotificationComponent } from './beandau-notification/beandau-notificati
     ContactpageComponent,
     CryptomonnaiesListComponent,
     CryptomonnaieDetailComponent,
+    CoinDetailComponent,
+    LoadingSpinnerComponent,
     NewsListComponent,
     WalletComponent,
     CommunitySectionComponent,

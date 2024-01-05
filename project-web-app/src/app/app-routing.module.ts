@@ -10,12 +10,13 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CoinDetailComponent } from './coin-detail/coin-detail.component';
 
 const routes: Routes = [
   { path: 'communitypage', component: CommunitySectionComponent },
   { path: 'walletpage', component: WalletComponent },
   { path: 'newspage', component: NewsListComponent },
-  { path: 'detailspage/:id', component: CryptomonnaieDetailComponent },
+  { path: 'detailspage/:id', component: CoinDetailComponent },
   { path: 'cryptocurrencypage', component: CryptomonnaiesListComponent },
   { path: 'contactpage', component: ContactpageComponent },
   { path: 'aboutpage', component: AboutComponent },
