@@ -31,6 +31,13 @@ router.put(
 
 router.get("/init", CryptoCtrl.inisialize);
 
+router.get(
+  "/cryptos/admin",
+  authenticate,
+  authorizeAdmin,
+  CryptoCtrl.getCryptoInfoByName
+);
+
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
 router.get("/cryptos/id", TrendCoinCtrl.fetchCoinsTrendings);
