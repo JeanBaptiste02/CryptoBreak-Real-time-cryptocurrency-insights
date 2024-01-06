@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,11 @@ import { catchError, map } from 'rxjs/operators';
 export class ConnectService {
   private apiUrl = 'http://localhost:4000/users';
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private router: Router
+  ) {}
 
   login(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { user: userData }).pipe(
@@ -19,6 +24,7 @@ export class ConnectService {
         if (token) {
           this.cookieService.set('token', token);
         }
+        this.router.navigate(['/']);
         return response;
       }),
       catchError((error: any) => {

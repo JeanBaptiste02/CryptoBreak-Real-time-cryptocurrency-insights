@@ -9,6 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-cryptomonnaies-list',
@@ -70,8 +71,13 @@ export class CryptomonnaiesListComponent implements OnInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService
   ) {}
+
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
 
   private getTokenFromCookie(): string {
     const cookies = document.cookie.split(';');

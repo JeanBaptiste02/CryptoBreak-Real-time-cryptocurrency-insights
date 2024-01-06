@@ -34,9 +34,9 @@
             ><i class="fa fa-user-circle" aria-hidden="true"></i>
           </a>
           <div class="dropdown-content">
-            <a (click)="goToProfilePage()">My space</a>
-            <a (click)="goToConnectPage()">Login</a>
-            <a>Logout</a>
+            <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
+            <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
+            <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
           </div>
         </li>
       </ul>
