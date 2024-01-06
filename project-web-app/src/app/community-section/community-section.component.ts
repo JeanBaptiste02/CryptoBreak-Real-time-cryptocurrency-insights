@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunityService, Message } from '../service/community.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-community-section',
@@ -105,17 +106,36 @@ export class CommunitySectionComponent implements OnInit {
   ];
   onlineUsers: any[] = [];
 
-  constructor(private communityService: CommunityService) {}
+  constructor(
+    private communityService: CommunityService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.loadMessages();
     this.getOnlineUsers();
+    this.updateCurrentUser();
   }
 
   loadMessages() {
     this.communityService.getMessages().subscribe((messages: Message[]) => {
       this.messages = messages;
+      const currentUser = this.userService.getUsername();
+      if (currentUser) {
+        this.messages.forEach((message) => {
+          message.username = currentUser;
+        });
+      }
     });
+  }
+
+  updateCurrentUser() {
+    const currentUser = this.userService.getUsername();
+    if (currentUser) {
+      this.messages.forEach((message) => {
+        message.username = currentUser;
+      });
+    }
   }
 
   sendMessage() {

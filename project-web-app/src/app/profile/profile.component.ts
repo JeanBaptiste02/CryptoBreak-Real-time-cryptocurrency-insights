@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../service/profile.service';
 import { NotificationService } from '../service/notification.service';
 import { Profile } from './profile.model';
+import { UserService } from '../service/user.service'; // Ajoutez ceci
 
 @Component({
   selector: 'app-profile',
@@ -14,12 +15,14 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.profileService.getProfile().subscribe((data) => {
       this.user = data;
+      this.userService.setUsername(data?.name || null);
     });
   }
 
