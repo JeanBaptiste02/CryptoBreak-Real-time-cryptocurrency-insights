@@ -29,17 +29,18 @@
             <a (click)="goToContactPage()">Contact</a>
           </div>
         </li>
-        <li class="header__item">
-          <a (click)="goToProfilePage()">My space</a>
+        <li class="header__item dropdown">
+          <a href="#" class="dropbtn"
+            ><i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-content">
+            <a (click)="goToProfilePage()">My space</a>
+            <a (click)="goToConnectPage()">Login</a>
+            <a>Logout</a>
+          </div>
         </li>
       </ul>
     </nav>
-    <a (click)="goToConnectPage()">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/11919/11919808.png"
-        alt="login"
-      />
-    </a>
   </div>
 </header>
 <app-notification></app-notification>

@@ -1,4 +1,3 @@
-// profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../service/profile.service';
 import { NotificationService } from '../service/notification.service';

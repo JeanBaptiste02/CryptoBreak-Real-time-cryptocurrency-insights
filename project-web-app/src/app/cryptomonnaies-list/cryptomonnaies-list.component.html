@@ -144,38 +144,38 @@
           <td style="background-color: #3a3a3a">Current Price:</td>
           <td>
             {{
-              chosenCrypto.current_price | currency : "USD" : "symbol" : "1.2-2"
+              chosenCrypto.current_price | currency : "EUR" : "symbol" : "1.2-2"
             }}
           </td>
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">Market Cap:</td>
-          <td>{{ chosenCrypto.market_cap | number : "1.0-0" }}</td>
+          <td>€{{ chosenCrypto.market_cap | number : "1.0-0" }}</td>
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">Market Cap Rank:</td>
           <td>{{ chosenCrypto.market_cap_rank }}</td>
         </tr>
         <tr>
-          <td style="background-color: #3a3a3a">Total Volume:</td>
-          <td>{{ chosenCrypto.total_volume | number : "1.0-0" }}</td>
+          <td style="background-color: #3a3a3a">Trading Volume:</td>
+          <td>€{{ chosenCrypto.total_volume | number : "1.0-0" }}</td>
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">High 24h:</td>
           <td>
-            {{ chosenCrypto.high_24h | currency : "USD" : "symbol" : "1.2-2" }}
+            {{ chosenCrypto.high_24h | currency : "EUR" : "symbol" : "1.2-2" }}
           </td>
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">Low 24h:</td>
           <td>
-            {{ chosenCrypto.low_24h | currency : "USD" : "symbol" : "1.2-2" }}
+            {{ chosenCrypto.low_24h | currency : "EUR" : "symbol" : "1.2-2" }}
           </td>
         </tr>
 
         <tr>
           <td style="background-color: #3a3a3a">Market Cap Change 24h:</td>
-          <td>{{ chosenCrypto.market_cap_change_24h | number : "1.0-0" }}</td>
+          <td>€{{ chosenCrypto.market_cap_change_24h | number : "1.0-0" }}</td>
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">
@@ -185,11 +185,7 @@
         </tr>
         <tr>
           <td style="background-color: #3a3a3a">Circulating Supply:</td>
-          <td>{{ chosenCrypto.circulating_supply | number : "1.0-0" }}</td>
-        </tr>
-        <tr>
-          <td style="background-color: #3a3a3a">Last Updated:</td>
-          <td>{{ chosenCrypto.last_updated | date : "medium" }}</td>
+          <td>€{{ chosenCrypto.circulating_supply | number : "1.0-0" }}</td>
         </tr>
       </table>
 
