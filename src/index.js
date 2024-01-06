@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const UserRoutes = require("./routes/routes");
-const CoinRoutes = require("./routes/routes");
-const CryptoRoutes = require("./routes/routes");
-const MessageRoutes = require("./routes/routes");
+const UserRoutes = require("./routes/users-routes");
+const CoinRoutes = require("./routes/crypto-routes");
+const CryptoRoutes = require("./routes/crypto-routes");
+const MessageRoutes = require("./routes/messages-routes");
 
 const app = express();
 const port = 4000;
@@ -45,8 +45,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/api/users", UserRoutes);
-app.use("/api/crypto", CryptoRoutes);
-app.use("/api/coins", CoinRoutes);
+app.use("/users", UserRoutes);
+app.use("/crypto", CryptoRoutes);
+app.use("/coins", CoinRoutes);
 app.use("/messages", MessageRoutes);
 module.exports = app;
