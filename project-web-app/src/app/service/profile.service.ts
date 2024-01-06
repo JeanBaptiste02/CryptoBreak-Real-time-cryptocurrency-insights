@@ -8,7 +8,7 @@ import { Profile } from '../profile/profile.model';
   providedIn: 'root',
 })
 export class ProfileService {
-  private apiUrl = 'http://localhost:4000/api/users';
+  private apiUrl = 'http://localhost:4000/users';
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 

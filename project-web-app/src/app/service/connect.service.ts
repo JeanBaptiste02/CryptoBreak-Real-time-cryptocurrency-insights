@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ConnectService {
-  private apiUrl = 'http://localhost:4000/api/users';
+  private apiUrl = 'http://localhost:4000/users';
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 

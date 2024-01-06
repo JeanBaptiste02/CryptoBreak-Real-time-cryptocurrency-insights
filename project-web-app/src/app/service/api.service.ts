@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getCoins(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:4000/coins/cryptos`);
+    return this.http.get<any[]>(`http://localhost:4000/crypto/allcrypto`);
   }
 
   getCoinInfo(id: string | null) {
@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   getCurrency(currency: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:4000/coins/cryptos`);
+    return this.http.get<any>(`http://localhost:4000/crypto/allcrypto`);
   }
 
   getTrendingCurrency(currency: string) {
@@ -39,5 +39,18 @@ export class ApiService {
     return this.http.get<any>(
       `https://api.coingecko.com/api/v3/coins/${coinId}`
     );
+  }
+
+  addCrypto(name: string, token: string): Observable<any> {
+    const url = `http://localhost:4000/crypto//crypto/${name}`;
+
+    // Ajoutez le token à l'en-tête de la requête
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Assurez-vous d'ajuster le type de contenu selon vos besoins
+    });
+
+    // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
+    return this.http.post(url, {}, { headers });
   }
 }

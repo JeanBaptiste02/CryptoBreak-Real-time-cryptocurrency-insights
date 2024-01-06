@@ -95,6 +95,15 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="addCrypto">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let crypto">
+          <button (click)="addCrypto(crypto)">
+            Add Cryptoㅤ<i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="showcolumns"></tr>
       <tr mat-row *matRowDef="let row; columns: showcolumns"></tr>
     </table>

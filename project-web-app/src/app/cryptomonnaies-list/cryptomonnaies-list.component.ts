@@ -28,6 +28,7 @@ export class CryptomonnaiesListComponent implements OnInit {
     'name',
     'current_price',
     'actions',
+    'addCrypto',
   ];
 
   coinInformation: any;
@@ -66,13 +67,24 @@ export class CryptomonnaiesListComponent implements OnInit {
 
   constructor(private api: ApiService, private router: Router) {}
 
+  private getTokenFromCookie(): string {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'token') {
+        return value;
+      }
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     this.getTrendingDatas();
     this.fetchCoins();
     this.getCompleteDatas();
     this.getGraphData(this.dataDurationInDays);
     this.deleteCrypto(this);
-    this.addCrypto();
+    this.addCrypto(this);
   }
 
   fetchCoins() {
@@ -187,5 +199,17 @@ export class CryptomonnaiesListComponent implements OnInit {
 
   deleteCrypto(crypto: any) {}
 
-  addCrypto() {}
+  addCrypto(crypto: any): void {
+    // Récupérez le token du cookie
+    const token = this.getTokenFromCookie();
+    this.api.addCrypto(crypto.name, token).subscribe(
+      (response) => {
+        console.log('Crypto ajoutée avec succès:', response);
+        this.fetchCoins();
+      },
+      (error) => {
+        console.error("Erreur lors de l'ajout de la crypto :", error);
+      }
+    );
+  }
 }
