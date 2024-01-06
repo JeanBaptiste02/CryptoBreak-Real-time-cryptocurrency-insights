@@ -111,6 +111,19 @@ button:hover {
   transition: background-color 0.5s, color 0.5s;
 }
 
+#deletebutton {
+  background-color: red;
+}
+
+#addCrypto {
+  background-color: #00c137;
+}
+
+#detailsbutton {
+  background-color: #00e5ff;
+  color: black;
+}
+
 .my_table button {
   display: flex;
   justify-content: center;
