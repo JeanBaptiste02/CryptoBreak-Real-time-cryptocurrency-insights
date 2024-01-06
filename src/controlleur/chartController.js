@@ -8,9 +8,39 @@ const mapChartData = (chartData) => ({
 });
 
 exports.getChartData = async (req, res) => {
-  const { id, days } = req.params; // Assuming you get parameters from the request
+  const { id, days } = req.params;
 
   try {
+    const coin = await Coin.findOne({ id: id });
+
+    const existingChartData = await ChartData.findOne({
+      coin: coin._id,
+      days: days,
+    });
+
+    if (existingChartData) {
+      // Si des données de graphique existent, les renvoyer directement
+
+      const responseDataChart = {
+        prices: existingChartData.prices.map((entry) => [
+          entry.timestamp,
+          entry.value,
+        ]),
+        market_caps: existingChartData.market_caps.map((entry) => [
+          entry.timestamp,
+          entry.value,
+        ]),
+        total_volumes: existingChartData.total_volumes.map((entry) => [
+          entry.timestamp,
+          entry.value,
+        ]),
+      };
+
+      //res.status(200).json(storedChartData);
+      res.status(200).json(responseDataChart);
+      return;
+    }
+
     const response = await axios.get(
       `https://api.coingecko.com/api/v3/coins/${id}/market_chart`,
       {
@@ -23,11 +53,8 @@ exports.getChartData = async (req, res) => {
 
     const chartData = response.data;
 
-    const coin = await Coin.findOne({ id: id });
-
-    // Create a new Chart document and save it to the database
     const newChartEntry = new ChartData({
-      coin: coin._id, // Assuming _id is the unique identifier of the Coin document
+      coin: coin._id,
       days: days,
       timestamps: chartData.timestamps,
       prices: response.data.prices.map(mapChartData),
@@ -37,9 +64,39 @@ exports.getChartData = async (req, res) => {
 
     await newChartEntry.save();
 
-    res.status(200).json(response.data); // Return the chart data
+    res.status(200).json(response.data);
   } catch (error) {
     console.error("Error fetching chart data:", error);
+
+    if (error.response && error.response.status === 429) {
+      //existantes depuis la base de données
+      const coin = await Coin.findOne({ id: id });
+      const storedChartData = await ChartData.findOne({
+        coin: coin._id,
+        days: days,
+      });
+      if (storedChartData) {
+        // If stored data is found, customize the response format
+        const responseDataChart = {
+          prices: storedChartData.prices.map((entry) => [
+            entry.timestamp,
+            entry.value,
+          ]),
+          market_caps: storedChartData.market_caps.map((entry) => [
+            entry.timestamp,
+            entry.value,
+          ]),
+          total_volumes: storedChartData.total_volumes.map((entry) => [
+            entry.timestamp,
+            entry.value,
+          ]),
+        };
+
+        res.status(200).json(responseDataChart);
+        return;
+      }
+    }
+
     res
       .status(500)
       .json({ error: "Internal Server Error", details: error.message });
