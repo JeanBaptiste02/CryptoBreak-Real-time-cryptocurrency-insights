@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BeandauNotificationComponent } from './beandau-notification.component';
+import { NotificationComponent } from './beandau-notification.component';
 
-describe('BeandauNotificationComponent', () => {
-  let component: BeandauNotificationComponent;
-  let fixture: ComponentFixture<BeandauNotificationComponent>;
+describe('NotificationComponent', () => {
+  let component: NotificationComponent;
+  let fixture: ComponentFixture<NotificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BeandauNotificationComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(BeandauNotificationComponent);
+      declarations: [NotificationComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

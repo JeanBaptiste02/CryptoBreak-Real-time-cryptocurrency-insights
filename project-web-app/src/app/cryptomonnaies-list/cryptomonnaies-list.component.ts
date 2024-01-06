@@ -8,6 +8,7 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../service/notification.service';
 
 @Component({
   selector: 'app-cryptomonnaies-list',
@@ -66,7 +67,11 @@ export class CryptomonnaiesListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private notificationService: NotificationService
+  ) {}
 
   private getTokenFromCookie(): string {
     const cookies = document.cookie.split(';');
@@ -202,11 +207,17 @@ export class CryptomonnaiesListComponent implements OnInit {
     const token = this.getTokenFromCookie();
     this.api.deleteCrypto(crypto.name, token).subscribe(
       (response) => {
-        console.log('Crypto supprimé avec succès:', response);
+        console.log('Crypto supprimer avec succès:', response);
         this.fetchCoins();
+        this.notificationService.showSuccessNotification(
+          'Crypto supprimer avec succès'
+        );
       },
       (error) => {
         console.error('Erreur lors de la suppristion de la crypto :', error);
+        this.notificationService.showErrorNotification(
+          'Erreur : crypto était déja supprimer'
+        );
       }
     );
   }
@@ -218,9 +229,15 @@ export class CryptomonnaiesListComponent implements OnInit {
       (response) => {
         console.log('Crypto ajoutée avec succès:', response);
         this.fetchCoins();
+        this.notificationService.showSuccessNotification(
+          'Crypto ajoutée avec succès'
+        );
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la crypto :", error);
+        this.notificationService.showErrorNotification(
+          'Erreur lors de l ajout de la crypto : elle existe déja !!!'
+        );
       }
     );
   }
