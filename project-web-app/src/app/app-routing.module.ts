@@ -11,6 +11,7 @@ import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CoinDetailComponent } from './coin-detail/coin-detail.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'communitypage', component: CommunitySectionComponent },
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: 'contactpage', component: ContactpageComponent },
   { path: 'aboutpage', component: AboutComponent },
   { path: 'connectpage', component: ConnectComponent },
-  { path: 'ProfilePage', component: ProfileComponent },
+  {
+    path: 'ProfilePage',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', component: WelcomePageComponent },
 ];
 
