@@ -60,7 +60,7 @@ exports.getCryptoInfoByName = async (req, res, next) => {
 
     // Construire l'objet de paramètres pour la requête Coingecko
     const coingeckoParams = {
-      vs_currency: "eur",
+      vs_currency: "EUR",
       order: "market_cap_desc",
       sparkline: false,
       names: cryptoNames.join(","), // Convertir les noms en une chaîne séparée par des virgules pour la requête Coingecko
@@ -137,5 +137,52 @@ exports.getAllCrypto = async (req, res, next) => {
         .status(500)
         .json({ error: "Erreur interne du serveur", details: error.message });
     }
+  }
+};
+
+exports.insertCrypto = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    // Vérifier si la crypto existe déjà
+    const existingCrypto = await Crypto.findOne({ name });
+
+    if (existingCrypto) {
+      return res.status(400).json({ error: "La crypto existe déjà." });
+    }
+
+    // Créer un nouvel enregistrement Crypto
+    const newCrypto = new Crypto({
+      name,
+    });
+
+    // Enregistrer dans la base de données
+    const savedCrypto = await newCrypto.save();
+
+    res.status(201).json(savedCrypto);
+  } catch (error) {
+    console.error("Erreur lors de l'insertion de la crypto :", error);
+    res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+};
+
+exports.deleteCrypto = async (req, res) => {
+  try {
+    const { id, name } = req.params;
+
+    // Vérifier si la crypto existe
+    const existingCrypto = await Crypto.findOne({ name });
+
+    if (!existingCrypto) {
+      return res.status(404).json({ error: "La crypto n'existe pas." });
+    }
+
+    // Supprimer la crypto de la base de données
+    await Crypto.deleteOne({ name });
+
+    res.status(200).json({ message: "La crypto a été supprimée avec succès." });
+  } catch (error) {
+    console.error("Erreur lors de la suppression de la crypto :", error);
+    res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };

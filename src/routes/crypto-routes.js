@@ -21,6 +21,20 @@ router.get(
   CryptoCtrl.getCryptoInfoByName
 );
 
+router.post(
+  "/crypto/:name",
+  authenticate,
+  authorizeAdmin,
+  CryptoCtrl.insertCrypto
+);
+
+router.delete(
+  "/crypto/:name",
+  authenticate,
+  authorizeAdmin,
+  CryptoCtrl.deleteCrypto
+);
+
 router.get("/allcrypto", CryptoCtrl.getAllCrypto);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
