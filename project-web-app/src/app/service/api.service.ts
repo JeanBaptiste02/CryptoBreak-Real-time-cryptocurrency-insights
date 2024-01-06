@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getCoins(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:4000/crypto/allcrypto`);
+    return this.http.get<any[]>(`http://localhost:4000/coins/cryptos`);
   }
 
   getCoinInfo(id: string | null) {
@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   getCurrency(currency: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:4000/crypto/allcrypto`);
+    return this.http.get<any>(`http://localhost:4000/coins/cryptos`);
   }
 
   getTrendingCurrency(currency: string) {
