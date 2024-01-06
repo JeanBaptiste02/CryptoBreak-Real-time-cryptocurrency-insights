@@ -76,7 +76,7 @@ exports.getChartData = async (req, res) => {
         days: days,
       });
       if (storedChartData) {
-        // If stored data is found, customize the response format
+        // If stored data is found, customize the responses format
         const responseDataChart = {
           prices: storedChartData.prices.map((entry) => [
             entry.timestamp,
