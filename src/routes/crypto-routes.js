@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const CoinCtrl = require("../controlleur/coinController");
+const pubCoinCtrl = require("../controlleur/publiqueCoinsController");
 const CryptoCtrl = require("../controlleur/cryptosController");
 const TrendCoinCtrl = require("../controlleur/trendingcoinsController");
 
@@ -42,5 +43,7 @@ router.get("/cryptos", CoinCtrl.fetchCoins);
 router.get("/cryptos/trend", TrendCoinCtrl.fetchCoinsTrendings);
 
 router.get("/cryptos/:id/details/:days", ChartCtrl.getChartData);
+
+router.get("/public/crypto", pubCoinCtrl.fetchCoins);
 
 module.exports = router;
