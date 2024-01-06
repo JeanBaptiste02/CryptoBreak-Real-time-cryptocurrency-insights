@@ -1,14 +1,7 @@
 const axios = require("axios");
 const ChartData = require("../models/chartData");
 const Coin = require("../models/coin");
-/*const axiosRetry = require("axios-retry");
 
-  // Enable retries with exponential backoff
-  axiosRetry(axios, {
-    retries: 3,
-    retryDelay: axiosRetry.exponentialDelay,
-  });
-*/
 const mapChartData = (chartData) => ({
   timestamp: chartData[0],
   value: chartData[1],

@@ -39,7 +39,7 @@ router.get("/allcrypto", CryptoCtrl.getAllCrypto);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);
 
-router.get("/cryptos/id", TrendCoinCtrl.fetchCoinsTrendings);
+router.get("/cryptos/trend", TrendCoinCtrl.fetchCoinsTrendings);
 
 router.get("/cryptos/:id/details/:days", ChartCtrl.getChartData);
 
