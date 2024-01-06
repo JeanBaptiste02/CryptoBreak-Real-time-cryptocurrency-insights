@@ -53,4 +53,17 @@ export class ApiService {
     // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
     return this.http.post(url, {}, { headers });
   }
+
+  deleteCrypto(name: string, token: string): Observable<any> {
+    const url = `http://localhost:4000/crypto//crypto/${name}`;
+
+    // Ajoutez le token à l'en-tête de la requête
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Assurez-vous d'ajuster le type de contenu selon vos besoins
+    });
+
+    // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
+    return this.http.delete(url, { headers });
+  }
 }

@@ -29,6 +29,7 @@ export class CryptomonnaiesListComponent implements OnInit {
     'current_price',
     'actions',
     'addCrypto',
+    'deleteCrypto',
   ];
 
   coinInformation: any;
@@ -197,7 +198,18 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.router.navigate(['detailspage', row.id]);
   }
 
-  deleteCrypto(crypto: any) {}
+  deleteCrypto(crypto: any) {
+    const token = this.getTokenFromCookie();
+    this.api.deleteCrypto(crypto.name, token).subscribe(
+      (response) => {
+        console.log('Crypto supprimé avec succès:', response);
+        this.fetchCoins();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppristion de la crypto :', error);
+      }
+    );
+  }
 
   addCrypto(crypto: any): void {
     // Récupérez le token du cookie

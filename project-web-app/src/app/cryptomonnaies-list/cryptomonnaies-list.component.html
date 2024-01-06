@@ -96,10 +96,19 @@
       </ng-container>
 
       <ng-container matColumnDef="addCrypto">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef>Add crypto</th>
         <td mat-cell *matCellDef="let crypto">
           <button (click)="addCrypto(crypto)">
             Add Cryptoㅤ<i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteCrypto">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let crypto">
+          <button (click)="deleteCrypto(crypto)">
+            delete Cryptoㅤ<i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </td>
       </ng-container>
