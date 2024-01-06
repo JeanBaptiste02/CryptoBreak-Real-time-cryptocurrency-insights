@@ -18,7 +18,7 @@ export class NewsListComponent {
   getNewsData() {
     this.newsListService.getNewsData('fr', 'fr', 'crypto').subscribe(
       (data) => {
-        this.newsData = data.results;
+        this.newsData = data;
       },
       (error) => {
         console.error('Error fetching news data:', error);
