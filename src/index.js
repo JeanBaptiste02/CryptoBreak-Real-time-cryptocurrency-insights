@@ -7,6 +7,7 @@ const UserRoutes = require("./routes/users-routes");
 const CoinRoutes = require("./routes/crypto-routes");
 const CryptoRoutes = require("./routes/crypto-routes");
 const MessageRoutes = require("./routes/messages-routes");
+const ArticleRoutes = require("./routes/articles-routes");
 
 const app = express();
 const port = 4000;
@@ -49,4 +50,5 @@ app.use("/users", UserRoutes);
 app.use("/crypto", CryptoRoutes);
 app.use("/coins", CoinRoutes);
 app.use("/messages", MessageRoutes);
+app.use("/articles", ArticleRoutes);
 module.exports = app;
