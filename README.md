@@ -17,10 +17,10 @@ Bienvenue dans le backend de CryptoBreak, le projet qui vous permet d'afficher d
 
 Pour utiliser le backend de CryptoBreak, suivez ces étapes :
 
-1. Clonez le dépôt : `git clone https://github.com/JeanBaptiste02/Proje-Web-Grp-8-priv.git`
+1. Clonez le dépôt : `git clone git@github.com:JeanBaptiste02/CryptoBreak.git`
 2. Accédez au répertoire du backend : `cd src`
 3. Installez les dépendances : `npm install`
-4. Lancez le serveur : `node index.js`
+4. Lancez le serveur : `nodemon index.js`
 
 ## Fonctionnalités
 
@@ -40,7 +40,7 @@ Assurez-vous d'avoir Node.js installé sur votre machine.
 
 ```bash
 # Clonez le dépôt
-git clone https://github.com/JeanBaptiste02/Proje-Web-Grp-8-priv.git
+git clone git@github.com:JeanBaptiste02/CryptoBreak.git
 
 # Installez les dépendances
 npm install
