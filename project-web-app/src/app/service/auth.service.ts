@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
+import { NotificationService } from '../service/notification.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private authTokenKey: string = 'token';
-
-  login(token: string) {
-    // Logique pour gérer la connexion et stocker le token dans le cookie
-    document.cookie = `${this.authTokenKey}=${token}`;
-  }
+  constructor(private notificationService: NotificationService) {}
 
   logout() {
     // Logique pour gérer la déconnexion et supprimer le token du cookie
     document.cookie = `${this.authTokenKey}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    this.notificationService.showAuthNotification(
+      'Au revoir et a la prochaine !!! '
+    );
   }
 
   isAuthenticatedUser(): boolean {

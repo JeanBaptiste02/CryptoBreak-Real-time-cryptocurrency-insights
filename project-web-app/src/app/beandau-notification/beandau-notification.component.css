@@ -29,6 +29,21 @@
   opacity: 0; /* Initiallement invisible */
 }
 
+.app-notification.auth {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(23, 122, 235); /* Couleur de fond du bandeau */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  z-index: 9999; /* Assurez-vous que le bandeau est au-dessus de tous les autres éléments */
+  transition: opacity 0.5s ease-in-out; /* Animation de disparition */
+  opacity: 0; /* Initiallement invisible */
+}
+
 .app-notification.visible {
   opacity: 1; /* Rend le bandeau visible */
 }

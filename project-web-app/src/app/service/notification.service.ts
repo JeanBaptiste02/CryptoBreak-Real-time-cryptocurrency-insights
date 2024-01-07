@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class NotificationService {
   private notificationSubject = new Subject<{
     message: string;
-    type: 'success' | 'error';
+    type: 'success' | 'error' | 'auth';
   }>();
   notification$ = this.notificationSubject.asObservable();
 
@@ -25,7 +25,14 @@ export class NotificationService {
     this.showNotification(successMessage, 'success');
   }
 
-  private showNotification(message: string, type: 'success' | 'error') {
+  showAuthNotification(successMessage: string) {
+    this.showNotification(successMessage, 'auth');
+  }
+
+  private showNotification(
+    message: string,
+    type: 'success' | 'error' | 'auth'
+  ) {
     this.notificationSubject.next({ message, type });
   }
 }

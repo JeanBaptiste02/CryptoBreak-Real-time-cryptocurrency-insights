@@ -11,6 +11,7 @@ export class NotificationComponent implements OnInit {
   message: string | null;
   isVisible: boolean = false;
   isError: boolean = false;
+  isauth: boolean = false;
 
   constructor(private notificationService: NotificationService) {
     this.message = null;
@@ -21,6 +22,7 @@ export class NotificationComponent implements OnInit {
       this.message = message;
       this.isVisible = true;
       this.isError = type === 'error';
+      this.isauth = type === 'auth';
 
       // Déclenche la disparition du bandeau après 3000 millisecondes (3 secondes)
       setTimeout(() => {

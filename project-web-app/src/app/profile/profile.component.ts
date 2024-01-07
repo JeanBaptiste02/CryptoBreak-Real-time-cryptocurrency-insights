@@ -32,8 +32,8 @@ export class ProfileComponent implements OnInit {
         (response) => {
           console.log('Profile updated successfully:', response);
           // Après la mise à jour, affichez la notification spécifique au profil
-          this.notificationService.showProfileUpdateNotification(
-            this.user?.name || 'Utilisateur'
+          this.notificationService.showSuccessNotification(
+            'mise a jour du profile avec success '
           );
         },
         (error) => {
