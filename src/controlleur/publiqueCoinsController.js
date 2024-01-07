@@ -31,11 +31,11 @@ exports.fetchCoins = async (req, res) => {
     const currentTime = new Date().getTime();
     const oneHourInMillis = 60 * 1000;
 
-    // if (currentTime - lastUpdateTimestamp < oneHourInMillis) {
-    //   const storedData = await Coinpub.find();
-    //   res.status(200).json(storedData);
-    //   return;
-    // }
+    if (currentTime - lastUpdateTimestamp < oneHourInMillis) {
+      const storedData = await Coinpub.find();
+      res.status(200).json(storedData);
+      return;
+    }
 
     // Construire l'objet de paramètres pour la requête Coingecko
     const coingeckoParams = {

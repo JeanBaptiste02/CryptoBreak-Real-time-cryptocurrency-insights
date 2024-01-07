@@ -9,12 +9,13 @@ const CoinRoutes = require("./routes/crypto-routes");
 const CryptoRoutes = require("./routes/crypto-routes");
 const MessageRoutes = require("./routes/messages-routes");
 const ArticleRoutes = require("./routes/articles-routes");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const app = express();
 const port = 4000;
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,7 +41,20 @@ app.get("/auth/google/success", (req, res) => {
     const userEmail = encodeURIComponent(
       req.user.email || "Email not available"
     );
-    res.redirect(`http://localhost:4200?userEmail=${userEmail}`);
+
+    // Créez le token avec les informations nécessaires
+    const token = jwt.sign(
+      { email: req.user.email, userId: req.user._id, role: req.user.role },
+      "844f4b3bf504d6511e1c147ce9e5895233783bceb34dad9081ba3e0f92a376b8",
+      { expiresIn: "1h" }
+    );
+
+    // Ajoutez le token dans le cookie
+    res.cookie("token", token, { maxAge: 3600000 }); // maxAge en millisecondes (1 heure dans cet exemple)
+    res.clearCookie("connect.sid");
+
+    // Redirigez l'utilisateur avec le token dans l'URL
+    res.redirect(`http://localhost:4200`);
   } else {
     res.status(401).send("User not authenticated");
   }
