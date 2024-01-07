@@ -229,13 +229,13 @@ export class CryptomonnaiesListComponent implements OnInit {
         console.log('Crypto supprimer avec succès:', response);
         this.fetchCoins();
         this.notificationService.showSuccessNotification(
-          'Crypto supprimer avec succès'
+          'La crypto-monnaie a été supprimée avec succès. '
         );
       },
       (error) => {
         console.error('Erreur lors de la suppristion de la crypto :', error);
         this.notificationService.showErrorNotification(
-          'Erreur : crypto était déja supprimer'
+          'Erreur : La crypto-monnaie avait déjà été supprimée précédemment. 🔄'
         );
       }
     );
@@ -249,13 +249,13 @@ export class CryptomonnaiesListComponent implements OnInit {
         console.log('Crypto ajoutée avec succès:', response);
         this.fetchCoins();
         this.notificationService.showSuccessNotification(
-          'Crypto ajoutée avec succès'
+          'Crypto ajoutée avec succès ! 🌐💹'
         );
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la crypto :", error);
         this.notificationService.showErrorNotification(
-          'Erreur lors de l ajout de la crypto : elle existe déja !!!'
+          'Erreur : Impossible d ajouter la crypto, elle existe déjà ! 🔄🚫'
         );
       }
     );

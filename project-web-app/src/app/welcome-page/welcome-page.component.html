@@ -1,7 +1,7 @@
 <div class="welcome-container">
   <h1>Welcome to <span>CryptoBreak </span>!</h1>
   <p>
-    Embark on a journey into the world of cryptocurrencies with CryptoHarbor!
+    Embark on a journey into the world of cryptocurrencies with CryptoBreak!
   </p>
   <div class="features">
     <div class="feature-item">
@@ -25,13 +25,7 @@
       />
       <h3>News and Updates</h3>
     </div>
-    <div class="feature-item">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/9767/9767128.png"
-        alt="Secure Transactions"
-      />
-      <h3>Secure Transactions</h3>
-    </div>
+
     <div class="feature-item">
       <img
         src="https://cdn-icons-png.flaticon.com/512/5247/5247455.png"
@@ -40,5 +34,7 @@
       <h3>Community Forum</h3>
     </div>
   </div>
-  <button (click)="goToConnectPage()">Naviguer...</button>
+  <button *ngIf="!isAuthenticated" (click)="goToConnectPage()">
+    Naviguer...
+  </button>
 </div>

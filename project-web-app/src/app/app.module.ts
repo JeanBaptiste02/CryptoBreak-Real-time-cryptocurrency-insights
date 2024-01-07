@@ -27,7 +27,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { CommunitySectionComponent } from './community-section/community-section.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NotificationComponent } from './beandau-notification/beandau-notification.component';
+import { NotificationComponent } from './bandeau-de-notification/bandeau-de-notification.component';
 import { AdminSpaceComponent } from './admin-space/admin-space.component';
 
 @NgModule({
@@ -65,7 +65,7 @@ import { AdminSpaceComponent } from './admin-space/admin-space.component';
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [CookieService], // Ajout de ce fournisseur
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

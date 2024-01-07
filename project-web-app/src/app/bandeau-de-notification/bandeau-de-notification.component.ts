@@ -4,8 +4,8 @@ import { NotificationService } from '../service/notification.service';
 
 @Component({
   selector: 'app-notification',
-  templateUrl: './beandau-notification.component.html',
-  styleUrls: ['./beandau-notification.component.css'],
+  templateUrl: './bandeau-de-notification.component.html',
+  styleUrls: ['./bandeau-de-notification.component.css'],
 })
 export class NotificationComponent implements OnInit {
   message: string | null;

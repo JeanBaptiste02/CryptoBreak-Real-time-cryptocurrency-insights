@@ -13,22 +13,18 @@
           <div class="dropdown-content">
             <a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a>
             <a (click)="goToNewsPage()">News/Updates</a>
-            <a (click)="goToMarketPage()">Market</a>
             <a (click)="goToWalletPage()">Wallet</a>
           </div>
         </li>
         <li class="header__item">
-          <a (click)="goToCommunityPage()">Break-Community</a>
+          <a *ngIf="isAuthenticated" (click)="goToCommunityPage()"
+            >Break-Community</a
+          >
         </li>
-        <li class="header__item dropdown">
-          <a href="#" class="dropbtn"
-            >Info <i class="fa fa-caret-down" aria-hidden="true"></i
-          ></a>
-          <div class="dropdown-content">
-            <a (click)="goToAboutPage()">About</a>
-            <a (click)="goToContactPage()">Contact</a>
-          </div>
+        <li class="header__item">
+          <a (click)="goToAboutPage()">About</a>
         </li>
+
         <li class="header__item dropdown">
           <a href="#" class="dropbtn"
             ><i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -54,18 +50,15 @@
       <div class="footer-col">
         <h4>CryptoBreak</h4>
         <ul>
-          <li><a href="#">about us</a></li>
-          <li><a href="#">our services</a></li>
-          <li><a href="#">privacy policy</a></li>
+          <li><a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a></li>
+          <li><a (click)="goToNewsPage()">News/Updates</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Account</h4>
-        <ul>
-          <li><a href="#">Informations</a></li>
-        </ul>
+        <p>© 2024 .CryptoBreak Tous droits réservés.</p>
       </div>
+
       <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">

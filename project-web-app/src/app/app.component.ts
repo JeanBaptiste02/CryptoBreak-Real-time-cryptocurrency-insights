@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './service/auth.service';
+import { NotificationService } from './service/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,20 @@ import { AuthService } from './service/auth.service';
 export class AppComponent {
   title = 'project-web-app';
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private notificationService: NotificationService
+  ) {}
 
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticatedUser();
   }
 
   logout() {
+    this.notificationService.showAuthNotification(
+      '👋 Bon retour ! Explorez nos nouveautés et profitez de votre expérience. 😊'
+    );
     this.authService.logout();
     this.router.navigate(['/']);
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConnectService } from '../service/connect.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-connect',
@@ -23,7 +24,8 @@ export class ConnectComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private connectService: ConnectService
+    private connectService: ConnectService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -38,6 +40,12 @@ export class ConnectComponent implements OnInit {
       .subscribe((response) => {
         console.log('Server response:', response);
       });
+  }
+
+  loginWithGoogle(): void {
+    // Redirigez l'utilisateur vers votre backend pour l'authentification Google
+    window.location.href = 'http://localhost:4000/auth/google';
+    this.authService.updateGoogleAuthStatus(true);
   }
 
   onSubmit(): void {

@@ -27,7 +27,9 @@
     <button type="submit">Login</button>
 
     <div class="options">
-      <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+      <a class="forgot-password" (click)="loginWithGoogle()"
+        >Connexion avec Google</a
+      >
       <span class="divider">|</span>
       <a class="no-account" (click)="toggleLoggedIn()">Pas de compte ?</a>
     </div>

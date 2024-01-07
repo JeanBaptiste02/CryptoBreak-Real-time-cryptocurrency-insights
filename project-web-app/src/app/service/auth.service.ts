@@ -6,13 +6,15 @@ import { NotificationService } from '../service/notification.service';
 })
 export class AuthService {
   private authTokenKey: string = 'token';
+  private googleAuthStatus: boolean = false; // Ajout de la propriété
+
   constructor(private notificationService: NotificationService) {}
 
   logout() {
     // Logique pour gérer la déconnexion et supprimer le token du cookie
     document.cookie = `${this.authTokenKey}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     this.notificationService.showAuthNotification(
-      'Au revoir et a la prochaine !!! '
+      'À bientôt ! Merci de votre visite. 🌟 '
     );
   }
 
@@ -34,15 +36,21 @@ export class AuthService {
 
   isAdmin(): boolean {
     const authToken = this.getAuthToken();
-    //console.log(authToken);
     if (authToken) {
-      // Décodez le token JWT pour récupérer les informations sur l'utilisateur
       const decodedToken = atob(authToken.split('.')[1]);
-      // console.log(decodedToken);
       const tokenData = JSON.parse(decodedToken);
 
       return tokenData.role.includes('admin');
     }
     return false;
+  }
+
+  // Ajout des méthodes pour gérer l'authentification Google
+  updateGoogleAuthStatus(status: boolean): void {
+    this.googleAuthStatus = status;
+  }
+
+  getGoogleAuthStatus(): boolean {
+    return this.googleAuthStatus;
   }
 }
