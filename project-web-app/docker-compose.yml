@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  myexpressapp:
+    build: .
+    container_name: cryptobreak_server
+    ports:
+      - "3000:3000"
