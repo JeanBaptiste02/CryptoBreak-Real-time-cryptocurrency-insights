@@ -57,7 +57,7 @@
         style="width: 30px; height: 30px"
       />
     </div>
-
+    `
     <table class="my_table" mat-table [dataSource]="dataSources" matSort>
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef>Image</th>
@@ -113,8 +113,18 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="showcolumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: showcolumns"></tr>
+      <!-- ... Autres colonnes ... -->
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="isAdmin ? showcolumns : showcolumnspub"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: isAdmin ? showcolumns : showcolumnspub"
+      ></tr>
+
+      <!-- ... Autres colonnes ... -->
     </table>
 
     <mat-paginator
@@ -190,6 +200,7 @@
       </table>
 
       <button
+        *ngIf="isAuthenticatedUser"
         (click)="gotoDetails(chosenCrypto)"
         mat-button
         style="margin-top: 20px"

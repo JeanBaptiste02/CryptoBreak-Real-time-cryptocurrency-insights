@@ -34,14 +34,14 @@ export class AuthService {
 
   isAdmin(): boolean {
     const authToken = this.getAuthToken();
+    //console.log(authToken);
     if (authToken) {
       // Décodez le token JWT pour récupérer les informations sur l'utilisateur
       const decodedToken = atob(authToken.split('.')[1]);
+      // console.log(decodedToken);
       const tokenData = JSON.parse(decodedToken);
 
-      console.log('izan ' + tokenData.roles.value());
-      // Vérifiez si l'utilisateur a le rôle d'administrateur
-      return tokenData.roles.includes('admin');
+      return tokenData.role.includes('admin');
     }
     return false;
   }

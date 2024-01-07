@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../service/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  private baseUrl = 'http://localhost:4000/crypto/public/crypto';
+  private adminUrl = 'http://localhost:4000/coins/cryptos';
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  private getUrl(): string {
+    return this.authService.isAdmin() ? this.adminUrl : this.baseUrl;
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
 
   getCoins(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:4000/coins/cryptos`);
+    const url = `${this.getUrl()}`;
+    return this.http.get<any[]>(url);
   }
 
   getCoinInfo(id: string | null) {
@@ -17,7 +30,8 @@ export class ApiService {
   }
 
   getCurrency(currency: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:4000/coins/cryptos`);
+    const url = `${this.getUrl()}`;
+    return this.http.get<any>(url);
   }
 
   getTrendingCurrency(currency: string) {

@@ -34,6 +34,15 @@ export class CryptomonnaiesListComponent implements OnInit {
     'deleteCrypto',
   ];
 
+  showcolumnspub: string[] = [
+    'image',
+    'id',
+    'symbol',
+    'name',
+    'current_price',
+    'actions',
+  ];
+
   coinInformation: any;
   uniqueCoinId!: string;
   dataDurationInDays: number = 30;
@@ -77,6 +86,10 @@ export class CryptomonnaiesListComponent implements OnInit {
 
   get isAdmin(): boolean {
     return this.authService.isAdmin();
+  }
+
+  get isAuthenticatedUser(): boolean {
+    return this.authService.isAuthenticatedUser();
   }
 
   private getTokenFromCookie(): string {
