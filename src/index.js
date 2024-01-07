@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+require("./controlleur/auth_google");
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const UserRoutes = require("./routes/users-routes");
@@ -8,9 +9,42 @@ const CoinRoutes = require("./routes/crypto-routes");
 const CryptoRoutes = require("./routes/crypto-routes");
 const MessageRoutes = require("./routes/messages-routes");
 const ArticleRoutes = require("./routes/articles-routes");
+const passport = require("passport");
 
 const app = express();
 const port = 4000;
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", (req, res) => {
+  res.send('<a href="/auth/google">Authenticate with Google </a>');
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/auth/google/success",
+    failureRedirect: "/auth/google/failure",
+  })
+);
+
+app.get("/auth/google/success", (req, res) => {
+  if (req.isAuthenticated()) {
+    const userEmail = encodeURIComponent(
+      req.user.email || "Email not available"
+    );
+    res.redirect(`http://localhost:4200?userEmail=${userEmail}`);
+  } else {
+    res.status(401).send("User not authenticated");
+  }
+});
 
 // Connexion à la base de données MongoDB
 mongoose.connect(

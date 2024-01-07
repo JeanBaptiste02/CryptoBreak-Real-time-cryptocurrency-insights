@@ -3,7 +3,13 @@ const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  googleId: { type: String }, // Champ pour l'ID Google
+  password: {
+    type: String,
+    required: function () {
+      return !this.googleId; // Rend le champ `password` obligatoire si `googleId` est vide
+    },
+  },
   name: { type: String, required: false },
   role: {
     type: String,

@@ -13,8 +13,6 @@ exports.authenticate = (req, res, next) => {
     token = token.slice(7);
   }
 
-  console.log("Token:", token);
-
   if (!token) {
     return res.status(401).json({ message: "Token non fourni" });
   }
