@@ -18,7 +18,7 @@ CryptoBreak est une application web construite avec Angular qui fournit des info
 
 Pour commencer avec CryptoBreak, suivez ces étapes :
 
-1. Clonez le dépôt : `git clone https://github.com/JeanBaptiste02/Proje-Web-Grp-8-priv.git`
+1. Clonez le dépôt : `git clone git@github.com:JeanBaptiste02/CryptoBreak.git`
 2. Accédez au répertoire du projet : `cd project-web-app`
 3. Installez les dépendances : `npm install`
 4. Lancez le serveur de développement : `ng serve`
@@ -57,10 +57,10 @@ Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [Angular CLI](https://cli
 
 ```bash
 # Clonez le dépôt
-git clone https://github.com/JeanBaptiste02/Proje-Web-Grp-8-priv.git
+git clone git@github.com:JeanBaptiste02/CryptoBreak.git
 
 # Accédez au répertoire du projet
-cd CryptoBreak
+cd project-web-app
 
 # Installez les dépendances
 npm install
@@ -76,6 +76,16 @@ Lancez le serveur de développement
 Ouvrez votre navigateur et visitez
 
 `http://localhost:4200/`
+
+ou
+
+### Lancer [Docker](https://www.docker.com/)
+
+`docker-compose build`
+`docker-compopse up`
+
+pour arrêter le serveur :
+`docker-compose down`
 
 ## Technologies utilisées
 
