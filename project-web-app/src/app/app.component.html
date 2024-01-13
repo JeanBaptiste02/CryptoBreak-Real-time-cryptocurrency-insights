@@ -19,10 +19,7 @@
           </div>
         </li>
         <li class="header__item">
-          <a
-            *ngIf="isAuthenticated"
-            (click)="goToCommunityPage()"
-            style="color: white"
+          <a *ngIf="isAuthenticated" (click)="goToCommunityPage()"
             >Break-Community</a
           >
         </li>
@@ -36,9 +33,6 @@
           </a>
           <div class="dropdown-content">
             <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
-            <a *ngIf="isAuthenticated" (click)="goTofavoritPage()"
-              >My favorite</a
-            >
             <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
             <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
           </div>
