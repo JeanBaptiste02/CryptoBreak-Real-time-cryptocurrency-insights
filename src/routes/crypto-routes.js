@@ -45,5 +45,6 @@ router.get("/cryptos/trend", TrendCoinCtrl.fetchCoinsTrendings);
 router.get("/cryptos/:id/details/:days", ChartCtrl.getChartData);
 
 router.get("/public/crypto", pubCoinCtrl.fetchCoins);
+router.get("/favorit/crypto", authenticate, pubCoinCtrl.favoriteCoins);
 
 module.exports = router;

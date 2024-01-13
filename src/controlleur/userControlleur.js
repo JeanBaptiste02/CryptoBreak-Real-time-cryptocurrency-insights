@@ -281,3 +281,100 @@ exports.updateUserRole = async (req, res) => {
     });
   }
 };
+
+exports.updateProfilecrypto = async (req, res) => {
+  const userId = req.user.userId;
+
+  try {
+    const userFromDB = await exports.getUserById(userId);
+
+    if (!userFromDB) {
+      return res.status(404).json({ message: "Utilisateur non trouvé." });
+    }
+
+    // Ajoutez la nouvelle crypto à la liste existante
+    const newCrypto = req.body.cryptocurrencies;
+    let cryptomodi = firstLetterToLowerCase(newCrypto);
+
+    if (!userFromDB.cryptocurrencies.includes(newCrypto)) {
+      userFromDB.cryptocurrencies.push(cryptomodi);
+    }
+
+    // Sauvegardez les modifications
+    await userFromDB.save();
+
+    res.status(200).json({ message: "Profil mis à jour avec succès." });
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du profil :", error);
+    res
+      .status(500)
+      .json({ message: "Erreur serveur lors de la mise à jour du profil." });
+  }
+};
+
+exports.deleteProfilecrypto = async (req, res) => {
+  const userId = req.user.userId;
+
+  try {
+    const userFromDB = await exports.getUserById(userId);
+
+    if (!userFromDB) {
+      return res.status(404).json({ message: "Utilisateur non trouvé." });
+    }
+
+    // Crypto-monnaie à supprimer
+    const cryptoToRemove = req.body.cryptocurrencies.toLowerCase();
+
+    // Vérifier si la crypto-monnaie existe dans la liste
+    if (userFromDB.cryptocurrencies.includes(cryptoToRemove)) {
+      // Supprimer la crypto-monnaie de la liste
+      userFromDB.cryptocurrencies = userFromDB.cryptocurrencies.filter(
+        (crypto) => crypto !== cryptoToRemove
+      );
+
+      // Sauvegardez les modifications
+      await userFromDB.save();
+
+      return res.status(200).json({
+        message: "Crypto-monnaie supprimée avec succès.",
+        cryptocurrencies: userFromDB.cryptocurrencies,
+      });
+    } else {
+      return res.status(404).json({
+        message: "Crypto-monnaie non trouvée dans la liste de l'utilisateur.",
+      });
+    }
+  } catch (error) {
+    console.error(
+      "Erreur lors de la suppression de la crypto-monnaie :",
+      error
+    );
+    res.status(500).json({
+      message: "Erreur serveur lors de la suppression de la crypto-monnaie.",
+    });
+  }
+};
+
+function firstLetterToLowerCase(input) {
+  console.log("Input before:", input);
+
+  if (!input || input.length === 0) {
+    return input;
+  }
+
+  if (Array.isArray(input)) {
+    // Si c'est une liste, appliquer la transformation à chaque élément
+    return input.map((item) => {
+      if (typeof item === "string") {
+        return item.charAt(0).toLowerCase() + item.slice(1);
+      } else {
+        return item; // Ne rien faire si l'élément n'est pas une chaîne
+      }
+    });
+  } else if (typeof input === "string") {
+    // Si c'est une chaîne, appliquer la transformation normalement
+    return input.charAt(0).toLowerCase() + input.slice(1);
+  } else {
+    return input; // Si le type n'est ni une chaîne ni une liste, retourner tel quel
+  }
+}

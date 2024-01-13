@@ -17,6 +17,8 @@ router.post("/logout", authenticate, UserCtrl.logout);
 router.get("/profile", authenticate, UserCtrl.getProfile);
 
 router.put("/updateProfile", authenticate, UserCtrl.updateProfile);
+router.put("/updateProfilectypto", authenticate, UserCtrl.updateProfilecrypto);
+router.put("/deleteProfilectypto", authenticate, UserCtrl.deleteProfilecrypto);
 
 router.put(
   "/updateRole",
