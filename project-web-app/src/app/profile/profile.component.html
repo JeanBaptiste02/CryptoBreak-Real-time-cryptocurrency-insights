@@ -1,14 +1,28 @@
+<!-- profile.component.html -->
+
 <div *ngIf="user" class="profile-container">
   <div class="menu-container">
     <div class="menu">
-      <div class="menu-item" (click)="selectedMenuItem = 'coordonnees'">
-        Coordonnées
+      <div
+        class="menu-item"
+        (click)="selectedMenuItem = 'coordonnees'"
+        [class.selected]="selectedMenuItem === 'coordonnees'"
+      >
+        Informations
       </div>
-      <div class="menu-item" (click)="selectedMenuItem = 'defaultCurrency'">
+      <div
+        class="menu-item"
+        (click)="selectedMenuItem = 'defaultCurrency'"
+        [class.selected]="selectedMenuItem === 'defaultCurrency'"
+      >
         Default Currency
       </div>
-      <div class="menu-item" (click)="selectedMenuItem = 'myprefences'">
-        My Preferences
+      <div
+        class="menu-item"
+        (click)="selectedMenuItem = 'myprefences'"
+        [class.selected]="selectedMenuItem === 'myprefences'"
+      >
+        My Favorites
       </div>
     </div>
   </div>
@@ -16,6 +30,7 @@
   <div class="content-container">
     <div class="content">
       <div *ngIf="selectedMenuItem === 'coordonnees'" class="profile-field">
+        <h2 style="color: white">Informations</h2>
         <label class="label">Email:</label>
         <input type="text" [(ngModel)]="user.email" placeholder="Email" />
       </div>
@@ -29,39 +44,55 @@
       </div>
 
       <div *ngIf="selectedMenuItem === 'defaultCurrency'" class="profile-field">
-        <label class="label">Default Currency:</label>
-        <select [(ngModel)]="user.defaultCurrency" class="hoverable-menu">
+        <h2 class="label">Default Currency:</h2>
+        <select [(ngModel)]="user.defaultCurrency" class="select-field">
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
         </select>
       </div>
 
       <div *ngIf="selectedMenuItem === 'myprefences'" class="profile-field">
-        <label class="label">My Preferences</label>
-        <div>
-          <ul>
-            <li *ngFor="let preference of user.cryptocurrencies">
-              {{ preference }}
-              <button
-                (click)="removePreference(preference)"
-                style="background-color: rgb(160, 0, 0); color: black"
+        <h2 class="label">My Favorites</h2>
+        <!-- profile.component.html -->
+
+        <div class="crypto-table-container">
+          <table class="crypto-table">
+            <thead>
+              <tr>
+                <th>Crypto</th>
+                <th>Delete</th>
+                <th>Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let preference of user.cryptocurrencies"
+                class="crypto-row"
               >
-                Supprimer
-              </button>
-              <button class="btn btn-primary" (click)="openAddCryptoModal()">
-                Add Crypto
-              </button>
-            </li>
-          </ul>
+                <td>{{ preference }}</td>
+                <td>
+                  <button
+                    (click)="removePreference(preference)"
+                    class="action-btn delete-btn"
+                  >
+                    Supprimer
+                  </button>
+                </td>
+                <td>
+                  <button
+                    (click)="openAddCryptoModal()"
+                    class="action-btn add-btn"
+                  >
+                    Add Crypto
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <button
-        (click)="updateProfile()"
-        style="background-color: rgb(24, 182, 0); color: black; margin: 20px"
-      >
-        Update
-      </button>
+      <button (click)="updateProfile()" class="update-btn">Update</button>
     </div>
   </div>
 </div>
