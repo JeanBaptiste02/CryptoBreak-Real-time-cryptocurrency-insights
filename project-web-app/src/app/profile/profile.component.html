@@ -1,4 +1,3 @@
-<!-- profile.component.html -->
 <div *ngIf="user" class="profile-container">
   <div class="menu-container">
     <div class="menu">
@@ -7,6 +6,9 @@
       </div>
       <div class="menu-item" (click)="selectedMenuItem = 'defaultCurrency'">
         Default Currency
+      </div>
+      <div class="menu-item" (click)="selectedMenuItem = 'myprefences'">
+        My Preferences
       </div>
     </div>
   </div>
@@ -31,11 +33,26 @@
         <select [(ngModel)]="user.defaultCurrency" class="hoverable-menu">
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
-          <!-- Ajoutez d'autres options selon vos besoins -->
         </select>
       </div>
-    </div>
 
-    <button (click)="updateProfile()">Update</button>
+      <div *ngIf="selectedMenuItem === 'myprefences'" class="profile-field">
+        <label class="label">My Preferences</label>
+        <div>
+          <ul>
+            <li *ngFor="let preference of user.cryptocurrencies">
+              {{ preference }}
+              <button (click)="removePreference(preference)">Supprimer</button>
+              <!-- Ajoutez ce bouton à l'endroit où vous souhaitez dans votre composant -->
+              <button class="btn btn-primary" (click)="openAddCryptoModal()">
+                Add Crypto
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <button (click)="updateProfile()">Update</button>
+    </div>
   </div>
 </div>

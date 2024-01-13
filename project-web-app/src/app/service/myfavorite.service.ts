@@ -6,23 +6,42 @@ import { AuthService } from '../service/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
-  private baseUrl = 'http://localhost:4000/crypto/public/crypto';
-  private adminUrl = 'http://localhost:4000/coins/cryptos';
+export class Myfavorite {
+  private baseUrl = 'http://localhost:4000/crypto/favorit/crypto';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getUrl(): string {
-    return this.authService.isAdmin() ? this.adminUrl : this.baseUrl;
+    return this.baseUrl;
   }
 
   isAdmin(): boolean {
     return this.authService.isAdmin();
   }
 
-  getCoins(): Observable<any[]> {
+  updatecrypto(cryptocurrencies: string, token: string): Observable<any> {
+    const url = `http://localhost:4000/users/deleteProfilectypto`;
+
+    // Ajoutez le token à l'en-tête de la requête
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Assurez-vous d'ajuster le type de contenu selon vos besoins
+    });
+
+    const body = { cryptocurrencies };
+
+    // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
+    return this.http.put(url, body, { headers });
+  }
+
+  getCoins(token: string): Observable<any[]> {
+    // Ajoutez le token à l'en-tête de la requête
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Assurez-vous d'ajuster le type de contenu selon vos besoins
+    });
     const url = `${this.getUrl()}`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(url, { headers });
   }
 
   getCoinInfo(id: string | null) {
@@ -79,20 +98,5 @@ export class ApiService {
 
     // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
     return this.http.delete(url, { headers });
-  }
-
-  updatecrypto(cryptocurrencies: string, token: string): Observable<any> {
-    const url = `http://localhost:4000/users/updateProfilectypto`;
-
-    // Ajoutez le token à l'en-tête de la requête
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json', // Assurez-vous d'ajuster le type de contenu selon vos besoins
-    });
-
-    const body = { cryptocurrencies };
-
-    // Vous pouvez ajuster le corps de la requête en fonction de vos besoins
-    return this.http.put(url, body, { headers });
   }
 }

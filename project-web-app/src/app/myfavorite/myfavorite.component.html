@@ -1,4 +1,4 @@
-<h1>Crypto Center</h1>
+<h1>My favorite</h1>
 <div class="sub-header">
   <h2 style="padding: 20px">Trending currency</h2>
   <marquee
@@ -116,13 +116,18 @@
       <ng-container matColumnDef="favorit">
         <th mat-header-cell *matHeaderCellDef>favorit</th>
         <td mat-cell *matCellDef="let crypto">
-          <button (click)="update(crypto)" id="favorit">
-            <i class="fa fa-heart" aria-hidden="true"></i>
+          <button (click)="update(crypto)" id="deletebutton">
+            <i class="fa fa-heart-broken" aria-hidden="true"></i>
           </button>
         </td>
       </ng-container>
 
-      <tr mat-row *matRowDef="let row; columns: getColumns()"></tr>
+      <!-- ... Autres colonnes ... -->
+
+      <tr mat-header-row *matHeaderRowDef="showcolumnspub"></tr>
+      <tr mat-row *matRowDef="let row; columns: showcolumnspub"></tr>
+
+      <!-- ... Autres colonnes ... -->
     </table>
 
     <mat-paginator

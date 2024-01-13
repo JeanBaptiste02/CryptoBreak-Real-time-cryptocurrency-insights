@@ -6,45 +6,26 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { ApiService } from '../service/api.service';
+import { Myfavorite } from '../service/myfavorite.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
 import { AuthService } from '../service/auth.service';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-cryptomonnaies-list',
-  templateUrl: './cryptomonnaies-list.component.html',
-  styleUrls: ['./cryptomonnaies-list.component.css'],
+  templateUrl: './myfavorite.component.html',
+  styleUrls: ['./myfavorite.component.css'],
 })
-export class CryptomonnaiesListComponent implements OnInit {
+export class MyfavoriteComponent implements OnInit {
   cryptocurrencies: any[] = [];
   trendingData: any = [];
   currency: string = 'EUR';
   chosenCrypto: any | null = null;
   loadingError: string | null = null;
   dataSources = new MatTableDataSource<any>([]);
-  showcolumns: string[] = [
-    'image',
-    'id',
-    'symbol',
-    'name',
-    'current_price',
-    'actions',
-    'addCrypto',
-    'deleteCrypto',
-    'favorit',
-  ];
 
   showcolumnspub: string[] = [
-    'image',
-    'id',
-    'symbol',
-    'name',
-    'current_price',
-    'actions',
-  ];
-
-  showcolumnsuser: string[] = [
     'image',
     'id',
     'symbol',
@@ -89,7 +70,7 @@ export class CryptomonnaiesListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private api: ApiService,
+    private api: Myfavorite,
     private router: Router,
     private notificationService: NotificationService,
     private authService: AuthService
@@ -97,10 +78,6 @@ export class CryptomonnaiesListComponent implements OnInit {
 
   get isAdmin(): boolean {
     return this.authService.isAdmin();
-  }
-
-  get isAuthenticated(): boolean {
-    return this.authService.isAuthenticatedUser();
   }
 
   get isAuthenticatedUser(): boolean {
@@ -127,17 +104,9 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.addCrypto(this);
   }
 
-  getColumns() {
-    if (this.isAdmin) {
-      return this.showcolumns;
-    } else if (this.isAuthenticated) {
-      return this.showcolumnsuser;
-    } else {
-      return this.showcolumnspub;
-    }
-  }
   fetchCoins() {
-    this.api.getCoins().subscribe(
+    const token = this.getTokenFromCookie();
+    this.api.getCoins(token).subscribe(
       (data) => {
         this.cryptocurrencies = data;
         console.log('Coins from backend:', this.cryptocurrencies);
@@ -149,8 +118,9 @@ export class CryptomonnaiesListComponent implements OnInit {
   }
 
   getCompleteDatas() {
+    const token = this.getTokenFromCookie();
     this.api
-      .getCoins()
+      .getCoins(token)
       .pipe(
         retry(3),
         catchError((error) => {
@@ -266,6 +236,7 @@ export class CryptomonnaiesListComponent implements OnInit {
   }
 
   addCrypto(crypto: any): void {
+    // Récupérez le token du cookie
     const token = this.getTokenFromCookie();
     this.api.addCrypto(crypto.name, token).subscribe(
       (response) => {

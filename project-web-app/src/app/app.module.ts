@@ -29,6 +29,8 @@ import { CommunitySectionComponent } from './community-section/community-section
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationComponent } from './bandeau-de-notification/bandeau-de-notification.component';
 import { AdminSpaceComponent } from './admin-space/admin-space.component';
+import { MyfavoriteComponent } from './myfavorite/myfavorite.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -47,8 +49,10 @@ import { AdminSpaceComponent } from './admin-space/admin-space.component';
     ProfileComponent,
     NotificationComponent,
     AdminSpaceComponent,
+    MyfavoriteComponent,
   ],
   imports: [
+    ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

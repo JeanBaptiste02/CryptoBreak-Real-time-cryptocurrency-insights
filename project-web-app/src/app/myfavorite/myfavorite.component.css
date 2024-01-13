@@ -1,3 +1,42 @@
+/* Ajoutez ces styles à votre fichier de styles global */
+
+/* Style de l'arrière-plan de la modal */
+.modal-backdrop {
+  opacity: 0.5 !important;
+}
+
+/* Style de la modal elle-même */
+.modal-content {
+  border-radius: 8px; /* Coins arrondis */
+}
+
+/* Style de l'en-tête de la modal */
+.modal-header {
+  background-color: #007bff; /* Couleur de fond de l'en-tête */
+  color: #ffffff; /* Couleur du texte de l'en-tête */
+  border-bottom: 1px solid #0069d9; /* Bordure inférieure */
+}
+
+/* Style du titre de la modal */
+.modal-title {
+  font-size: 1.25rem; /* Taille de la police du titre */
+}
+
+/* Style du bouton de fermeture de la modal */
+.modal-header .close {
+  color: #ffffff; /* Couleur du texte du bouton de fermeture */
+}
+
+/* Style du corps de la modal */
+.modal-body {
+  padding: 20px; /* Espacement intérieur */
+}
+
+/* Style du bouton de fermeture en haut à droite */
+.modal-header .close {
+  margin-right: 10px;
+}
+
 h1 {
   color: rgb(0, 195, 255);
   text-align: center;
@@ -68,9 +107,9 @@ td {
 }
 
 .my_table th,
-.my_table td,
-.my_table td:nth-child(7), /* La 7ème colonne (delete) */
-.my_table td:nth-child(8)  /* La 8ème colonne (addCrypto) */ {
+  .my_table td,
+  .my_table td:nth-child(7), /* La 7ème colonne (delete) */
+  .my_table td:nth-child(8)  /* La 8ème colonne (addCrypto) */ {
   animation: fadeInUp 0.5s forwards;
 }
 
@@ -115,10 +154,6 @@ button:hover {
   background-color: red;
 }
 
-#favorit {
-  background-color: rgb(225, 52, 225);
-}
-
 #addCrypto {
   background-color: #00c137;
 }
@@ -155,7 +190,6 @@ div.mat-mdc-paginator-range-actions {
   transition: transform 0.3s ease;
   background-color: transparent;
 }
-
 .card img {
   max-width: 100%;
   height: auto;

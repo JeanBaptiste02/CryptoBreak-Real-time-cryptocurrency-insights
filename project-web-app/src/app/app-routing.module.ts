@@ -12,6 +12,7 @@ import { CommunitySectionComponent } from './community-section/community-section
 import { ProfileComponent } from './profile/profile.component';
 import { CoinDetailComponent } from './coin-detail/coin-detail.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MyfavoriteComponent } from './myfavorite/myfavorite.component';
 
 const routes: Routes = [
   { path: 'communitypage', component: CommunitySectionComponent },
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'ProfilePage',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'favoritepage',
+    component: MyfavoriteComponent,
     canActivate: [AuthGuard],
   },
   { path: '', component: WelcomePageComponent },

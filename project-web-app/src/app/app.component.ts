@@ -68,4 +68,8 @@ export class AppComponent {
   goToCommunityPage() {
     this.router.navigate(['communitypage']);
   }
+
+  goTofavoritPage(){
+    this.router.navigate(['favoritepage']);
+  }
 }

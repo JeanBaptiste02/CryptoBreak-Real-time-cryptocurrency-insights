@@ -5,7 +5,9 @@
     </div>
     <nav class="header__nav">
       <ul class="header__menu">
-        <li class="header__item"><a (click)="goToHomePage()">Home</a></li>
+        <li class="header__item">
+          <a (click)="goToHomePage()" style="color: white">Home</a>
+        </li>
         <li class="header__item dropdown">
           <a href="#" class="dropbtn"
             >Crypto <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -17,12 +19,15 @@
           </div>
         </li>
         <li class="header__item">
-          <a *ngIf="isAuthenticated" (click)="goToCommunityPage()"
+          <a
+            *ngIf="isAuthenticated"
+            (click)="goToCommunityPage()"
+            style="color: white"
             >Break-Community</a
           >
         </li>
         <li class="header__item">
-          <a (click)="goToAboutPage()">About</a>
+          <a (click)="goToAboutPage()" style="color: white">About</a>
         </li>
 
         <li class="header__item dropdown">
@@ -31,6 +36,9 @@
           </a>
           <div class="dropdown-content">
             <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
+            <a *ngIf="isAuthenticated" (click)="goTofavoritPage()"
+              >My favorite</a
+            >
             <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
             <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
           </div>
@@ -44,30 +52,38 @@
 
 <router-outlet></router-outlet>
 
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="footer-col">
-        <h4>CryptoBreak</h4>
-        <ul>
-          <li><a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a></li>
-          <li><a (click)="goToNewsPage()">News/Updates</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <p>© 2024 .CryptoBreak Tous droits réservés.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>follow us</h4>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+<div class="footer-dark">
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 item">
+          <h3>CryptoBreak</h3>
+          <ul>
+            <li><a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a></li>
+            <li><a (click)="goToNewsPage()">News/Updates</a></li>
+            <li><a (click)="goToWalletPage()">Wallet</a></li>
+            <li><a (click)="goToAboutPage()">About</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 item text">
+          <h3>Company Name</h3>
+          <p>
+            Explore the world of cryptocurrencies with CryptoBreak! Stay
+            informed with real-time market data, news updates, and connect with
+            fellow enthusiasts in our community forum. Make smart decisions in
+            the ever-evolving crypto landscape. 🚀💰 #CryptoBreak
+            #Cryptocurrency
+          </p>
+        </div>
+        <div class="col item social">
+          <h3>Contact Us</h3>
+          <a href="#"><i class="icon ion-social-facebook"></i></a
+          ><a href="#"><i class="icon ion-social-twitter"></i></a
+          ><a href="#"><i class="icon ion-social-snapchat"></i></a
+          ><a href="#"><i class="icon ion-social-instagram"></i></a>
         </div>
       </div>
+      <p class="copyright" style="margin-left: 40px">CryptoBreak © 2024</p>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
