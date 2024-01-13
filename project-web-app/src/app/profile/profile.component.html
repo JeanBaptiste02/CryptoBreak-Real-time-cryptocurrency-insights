@@ -42,8 +42,12 @@
           <ul>
             <li *ngFor="let preference of user.cryptocurrencies">
               {{ preference }}
-              <button (click)="removePreference(preference)">Supprimer</button>
-              <!-- Ajoutez ce bouton à l'endroit où vous souhaitez dans votre composant -->
+              <button
+                (click)="removePreference(preference)"
+                style="background-color: rgb(160, 0, 0); color: black"
+              >
+                Supprimer
+              </button>
               <button class="btn btn-primary" (click)="openAddCryptoModal()">
                 Add Crypto
               </button>
@@ -52,7 +56,12 @@
         </div>
       </div>
 
-      <button (click)="updateProfile()">Update</button>
+      <button
+        (click)="updateProfile()"
+        style="background-color: rgb(24, 182, 0); color: black; margin: 20px"
+      >
+        Update
+      </button>
     </div>
   </div>
 </div>

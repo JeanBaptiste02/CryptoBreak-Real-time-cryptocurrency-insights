@@ -27,11 +27,19 @@
     <button type="submit">Login</button>
 
     <div class="options">
-      <a class="forgot-password" (click)="loginWithGoogle()"
+      <a
+        class="forgot-password"
+        (click)="loginWithGoogle()"
+        style="color: rgb(255, 255, 255); cursor: pointer"
         >Connexion avec Google</a
       >
       <span class="divider">|</span>
-      <a class="no-account" (click)="toggleLoggedIn()">Pas de compte ?</a>
+      <a
+        class="no-account"
+        (click)="toggleLoggedIn()"
+        style="color: rgb(255, 255, 255); cursor: pointer"
+        >Pas de compte ?</a
+      >
     </div>
   </form>
 </div>
