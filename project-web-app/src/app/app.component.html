@@ -36,6 +36,9 @@
           </a>
           <div class="dropdown-content">
             <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
+            <a *ngIf="isAuthenticated" (click)="goTofavoritPage()"
+              >My Favorites</a
+            >
             <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
             <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
           </div>
