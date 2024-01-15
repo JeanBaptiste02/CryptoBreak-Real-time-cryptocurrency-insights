@@ -31,6 +31,7 @@ import { NotificationComponent } from './bandeau-de-notification/bandeau-de-noti
 import { AdminSpaceComponent } from './admin-space/admin-space.component';
 import { MyfavoriteComponent } from './myfavorite/myfavorite.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SingleNewsComponent } from './single-news/single-news.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NotificationComponent,
     AdminSpaceComponent,
     MyfavoriteComponent,
+    SingleNewsComponent,
   ],
   imports: [
     ModalModule.forRoot(),

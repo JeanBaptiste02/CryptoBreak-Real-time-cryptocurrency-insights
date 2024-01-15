@@ -11,4 +11,14 @@ export class NewsListService {
     const apiUrl = `http://localhost:4000/articles/articles`;
     return this.http.get<any>(apiUrl);
   }
+
+  getOneNewsData(
+    country: string,
+    language: string,
+    query: string,
+    article_id: string
+  ) {
+    const apiUrl = `http://localhost:4000/articles/articles/${article_id}`;
+    return this.http.get<any>(apiUrl);
+  }
 }

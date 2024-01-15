@@ -1,7 +1,12 @@
 <h1 style="padding: 20px">News and Update</h1>
 
 <div class="card-container">
-  <div class="card" *ngFor="let news of newsData">
+  <!--<div class="card" *ngFor="let news of newsData">-->
+  <a
+    class="card"
+    *ngFor="let news of newsData"
+    (click)="navigateToSingleNewsContent(news.article_id)"
+  >
     <div class="img">
       <img src="{{ news.image_url }}" alt="{{ news.title }}" />
     </div>
@@ -10,10 +15,11 @@
       <p class="card-pubDate">{{ news.pubDate }}</p>
       <p class="sub-title">{{ news.description }}</p>
       <p>
-        <button *ngIf="!news.expanded" (click)="toggleContent(news)">
+        <!--<button *ngIf="!news.expanded" (click)="toggleContent(news)">
           Read More
-        </button>
+        </button>-->
       </p>
     </div>
-  </div>
+  </a>
+  <!--</div>-->
 </div>

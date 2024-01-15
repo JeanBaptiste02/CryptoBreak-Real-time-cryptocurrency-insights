@@ -13,10 +13,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { CoinDetailComponent } from './coin-detail/coin-detail.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MyfavoriteComponent } from './myfavorite/myfavorite.component';
+import { SingleNewsComponent } from './single-news/single-news.component';
 
 const routes: Routes = [
   { path: 'communitypage', component: CommunitySectionComponent },
   { path: 'walletpage', component: WalletComponent },
+  { path: 'singlenewspage/:articleId', component: SingleNewsComponent },
   { path: 'newspage', component: NewsListComponent },
   { path: 'detailspage/:id', component: CoinDetailComponent },
   { path: 'cryptocurrencypage', component: CryptomonnaiesListComponent },

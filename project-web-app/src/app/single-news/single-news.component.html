@@ -1,0 +1,18 @@
+<div *ngIf="newsData">
+  <div class="card-container">
+    <div class="card" *ngFor="let news of newsData">
+      <h1 style="padding: 20px" class="title">{{ news.title }}</h1>
+      <div class="img">
+        <img src="{{ news.image_url }}" alt="{{ news.title }}" />
+      </div>
+      <div class="content">
+        <p class="card-pubDate">{{ news.pubDate }}</p>
+        <p class="card-creator">{{ news.creator }}</p>
+        <p class="card-keywords">{{ news.keywords }}</p>
+        <p class="card-description">{{ news.description }}</p>
+        <p class="card-content">{{ news.content }}</p>
+        <a class="link" href="{{ news.link }}">{{ news.link }}</a>
+      </div>
+    </div>
+  </div>
+</div>
