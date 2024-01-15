@@ -95,20 +95,25 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="addCrypto">
-        <th mat-header-cell *matHeaderCellDef>Add crypto</th>
+      <ng-container matColumnDef="toggleButton">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let crypto">
-          <button (click)="addCrypto(crypto)" id="addCrypto">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-          </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="deleteCrypto">
-        <th mat-header-cell *matHeaderCellDef>Delete</th>
-        <td mat-cell *matCellDef="let crypto">
-          <button (click)="deleteCrypto(crypto)" id="deletebutton">
-            <i class="fa fa-trash" aria-hidden="true"></i>
+          <button
+            (click)="toggleCrypto(crypto)"
+            id="toggleButton"
+            [ngClass]="{
+              'blue-text': !crypto.isAdded,
+              'red-text': crypto.isAdded
+            }"
+          >
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-plus': !crypto.isAdded,
+                'fa-trash': crypto.isAdded
+              }"
+              aria-hidden="true"
+            ></i>
           </button>
         </td>
       </ng-container>

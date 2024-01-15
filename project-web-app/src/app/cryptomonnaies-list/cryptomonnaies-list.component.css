@@ -209,3 +209,11 @@ div.mat-mdc-paginator-range-actions {
 .label {
   font-weight: bold;
 }
+
+.blue-text {
+  background-color: blue;
+}
+
+.red-text {
+  background-color: red;
+}

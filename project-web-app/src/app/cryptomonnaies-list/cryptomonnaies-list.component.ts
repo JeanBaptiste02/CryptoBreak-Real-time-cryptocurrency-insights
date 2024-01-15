@@ -17,6 +17,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./cryptomonnaies-list.component.css'],
 })
 export class CryptomonnaiesListComponent implements OnInit {
+  isAdded: boolean = false;
   cryptocurrencies: any[] = [];
   trendingData: any = [];
   currency: string = 'EUR';
@@ -30,8 +31,7 @@ export class CryptomonnaiesListComponent implements OnInit {
     'name',
     'current_price',
     'actions',
-    'addCrypto',
-    'deleteCrypto',
+    'toggleButton',
     'favorit',
   ];
 
@@ -116,6 +116,16 @@ export class CryptomonnaiesListComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  // Inside your component class
+  toggleCrypto(crypto: any): void {
+    if (crypto.isAdded) {
+      this.deleteCrypto(crypto);
+    } else {
+      this.addCrypto(crypto);
+    }
+    crypto.isAdded = !crypto.isAdded;
   }
 
   ngOnInit(): void {
