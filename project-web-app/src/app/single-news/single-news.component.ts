@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 import { NewsListService } from '../service/news-list.service';
 
 @Component({
@@ -11,6 +13,7 @@ export class SingleNewsComponent implements OnInit {
   newsData: any[] = [];
 
   constructor(
+    private router: Router,
     private newsListService: NewsListService,
     private route: ActivatedRoute
   ) {}
@@ -50,5 +53,9 @@ export class SingleNewsComponent implements OnInit {
           console.error('Error fetching news data:', error);
         }
       );
+  }
+
+  goToNewsPage() {
+    this.router.navigate(['newspage']);
   }
 }

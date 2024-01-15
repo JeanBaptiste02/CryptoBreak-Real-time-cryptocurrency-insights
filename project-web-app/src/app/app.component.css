@@ -35,17 +35,17 @@ li a:hover {
 }
 
 header {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
   text-align: center;
   position: fixed;
   top: 0;
   z-index: 1000;
-  width: 100%; /* Set the width to 100% */
-  max-width: none; /* Remove the max-width restriction */
+  width: 100%;
+  max-width: none;
 }
 
 .logo {
-  font-size: 1.25rem;
+  font-size: 30px;
   margin: 1rem;
   text-transform: uppercase;
 }
@@ -216,6 +216,7 @@ ul {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 10px;
+  right: 0;
 }
 
 .dropdown-content a {
@@ -376,6 +377,7 @@ ul {
   line-height: 1.8;
   text-decoration: none;
   color: inherit;
+  font-size: 15px;
 }
 
 .footer .menu a:hover {

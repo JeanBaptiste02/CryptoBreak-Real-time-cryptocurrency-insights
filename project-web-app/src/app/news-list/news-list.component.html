@@ -12,7 +12,9 @@
     </div>
     <div class="content">
       <h2 class="title">{{ news.title }}</h2>
-      <p class="card-pubDate">{{ news.pubDate }}</p>
+      <p class="card-pubDate" style="color: rgb(174, 174, 174)">
+        {{ news.pubDate }}
+      </p>
       <p class="sub-title">{{ news.description }}</p>
       <p>
         <!--<button *ngIf="!news.expanded" (click)="toggleContent(news)">

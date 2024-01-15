@@ -1,18 +1,65 @@
 <div *ngIf="newsData">
-  <div class="card-container">
-    <div class="card" *ngFor="let news of newsData">
-      <h1 style="padding: 20px" class="title">{{ news.title }}</h1>
-      <div class="img">
-        <img src="{{ news.image_url }}" alt="{{ news.title }}" />
-      </div>
-      <div class="content">
-        <p class="card-pubDate">{{ news.pubDate }}</p>
-        <p class="card-creator">{{ news.creator }}</p>
-        <p class="card-keywords">{{ news.keywords }}</p>
-        <p class="card-description">{{ news.description }}</p>
-        <p class="card-content">{{ news.content }}</p>
-        <a class="link" href="{{ news.link }}">{{ news.link }}</a>
-      </div>
+  <div class="news-container" *ngFor="let news of newsData">
+    <div class="img-container">
+      <img
+        src="{{ news.image_url }}"
+        alt="{{ news.title }}"
+        style="margin-top: 90px; margin-left: 10px"
+      />
+    </div>
+    <div class="details-container">
+      <h1
+        class="title"
+        style="
+          margin-top: 90px;
+          color: white;
+          margin-bottom: 20px;
+          margin-left: 20px;
+        "
+      >
+        {{ news.title }}
+      </h1>
+      <p
+        class="card-pubDate"
+        style="
+          margin-top: 20px;
+          color: rgb(131, 131, 131);
+          margin-bottom: 20px;
+          margin-left: 20px;
+        "
+      >
+        {{ news.pubDate }}
+      </p>
+      <p
+        class="card-creator"
+        style="margin-left: 20px; color: rgb(176, 176, 176); margin-bottom: 5px"
+      >
+        {{ news.creator }}
+      </p>
+      <p
+        class="card-keywords"
+        style="
+          margin-left: 20px;
+          color: rgb(176, 176, 176);
+          margin-bottom: 15px;
+        "
+      >
+        {{ news.keywords }}
+      </p>
+      <p
+        class="card-content"
+        style="margin-left: 20px; color: rgb(180, 180, 180)"
+      >
+        {{ news.content }}
+      </p>
+
+      <button class="read-more-btn">
+        <a class="link" href="{{ news.link }}">Read more</a>
+      </button>
+
+      <button (click)="goToNewsPage()" class="return-back-btn">
+        Return Back
+      </button>
     </div>
   </div>
 </div>

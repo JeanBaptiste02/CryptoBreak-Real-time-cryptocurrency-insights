@@ -114,15 +114,13 @@
       </ng-container>
 
       <ng-container matColumnDef="favorit">
-        <th mat-header-cell *matHeaderCellDef>favorit</th>
+        <th mat-header-cell *matHeaderCellDef>favorite</th>
         <td mat-cell *matCellDef="let crypto">
           <button (click)="update(crypto)" id="deletebutton">
             <i class="fa fa-heart-broken" aria-hidden="true"></i>
           </button>
         </td>
       </ng-container>
-
-      <!-- ... Autres colonnes ... -->
 
       <tr mat-header-row *matHeaderRowDef="showcolumnspub"></tr>
       <tr mat-row *matRowDef="let row; columns: showcolumnspub"></tr>

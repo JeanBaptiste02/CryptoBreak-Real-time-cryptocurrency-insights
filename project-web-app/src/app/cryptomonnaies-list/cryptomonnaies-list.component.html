@@ -119,7 +119,7 @@
       </ng-container>
 
       <ng-container matColumnDef="favorit">
-        <th mat-header-cell *matHeaderCellDef>favorit</th>
+        <th mat-header-cell *matHeaderCellDef>favorite</th>
         <td mat-cell *matCellDef="let crypto">
           <button (click)="update(crypto)" id="favorit">
             <i class="fa fa-heart" aria-hidden="true"></i>
@@ -142,8 +142,6 @@
     <h2>Details</h2>
 
     <div *ngIf="chosenCrypto" class="detailsdiv">
-      <h3>Selected Crypto Details:</h3>
-      <!-- Ajoutez autant de balises p que nécessaire pour afficher toutes les informations que vous souhaitez -->
       <table class="crypto-table">
         <tr>
           <td style="background-color: #3a3a3a">Symbol:</td>
