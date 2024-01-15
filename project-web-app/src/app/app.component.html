@@ -1,51 +1,51 @@
-<header class="header">
-  <div class="container">
-    <div class="header__logo">
-      <h1 class="header__logo__name" (click)="goToHomePage()">CryptoBreak</h1>
-    </div>
-    <nav class="header__nav">
-      <ul class="header__menu">
-        <li class="header__item">
-          <a (click)="goToHomePage()" style="color: white">Home</a>
-        </li>
-        <li class="header__item dropdown">
-          <a href="#" class="dropbtn"
-            >Crypto <i class="fa fa-caret-down" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-content">
-            <a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a>
-            <a (click)="goToNewsPage()">News/Updates</a>
-            <a (click)="goToWalletPage()">Wallet</a>
-          </div>
-        </li>
-        <li class="header__item">
-          <a
-            *ngIf="isAuthenticated"
-            (click)="goToCommunityPage()"
-            style="color: white"
-            >Break-Community</a
-          >
-        </li>
-        <li class="header__item">
-          <a (click)="goToAboutPage()" style="color: white">About</a>
-        </li>
+<header>
+  <h1 class="logo">CryptoBreak</h1>
+  <input type="checkbox" class="nav-toggle" id="nav-toggle" />
+  <nav>
+    <ul>
+      <li class="header__item">
+        <a (click)="goToHomePage()" style="color: white">Home</a>
+      </li>
+      <li class="header__item dropdown">
+        <a href="#" class="dropbtn"
+          >Crypto <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-content">
+          <a (click)="goToCryptoCurrencyListPage()">Crypto-Center</a>
+          <a (click)="goToNewsPage()">News/Updates</a>
+          <a (click)="goToWalletPage()">Wallet</a>
+        </div>
+      </li>
+      <li class="header__item">
+        <a
+          *ngIf="isAuthenticated"
+          (click)="goToCommunityPage()"
+          style="color: white"
+          >Break-Community</a
+        >
+      </li>
+      <li class="header__item">
+        <a (click)="goToAboutPage()" style="color: white">About</a>
+      </li>
 
-        <li class="header__item dropdown">
-          <a href="#" class="dropbtn"
-            ><i class="fa fa-user-circle" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-content">
-            <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
-            <a *ngIf="isAuthenticated" (click)="goTofavoritPage()"
-              >My Favorites</a
-            >
-            <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
-            <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-  </div>
+      <li class="header__item dropdown">
+        <a href="#" class="dropbtn"
+          ><i class="fa fa-user-circle" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-content">
+          <a *ngIf="isAuthenticated" (click)="goToProfilePage()">My space</a>
+          <a *ngIf="isAuthenticated" (click)="goTofavoritPage()"
+            >My Favorites</a
+          >
+          <a *ngIf="!isAuthenticated" (click)="goToConnectPage()">Login</a>
+          <a *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label>
 </header>
 <app-notification></app-notification>
 <router-outlet></router-outlet>

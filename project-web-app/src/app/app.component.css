@@ -34,50 +34,143 @@ li a:hover {
   align-items: center;
 }
 
-.header {
+header {
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  margin: 1rem;
+  text-transform: uppercase;
+}
+
+nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  text-align: left;
+  background: black;
+  width: 100%;
+  height: 100vh;
+  padding-top: 2rem;
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  height: 100px;
-  box-shadow: 0px 35px 60px rgba(0, 0, 0, 0.25);
-  /*background-color: rgb(0 126 255);*/
-  background-color: black;
-  border-radius: 20px;
+  cursor: pointer;
 }
 
-.header__logo {
-  text-transform: uppercase;
-}
-
-.header__menu {
-  display: flex;
-  column-gap: 54px;
-}
-
-.header__link {
-  font-size: 20px;
-  text-transform: uppercase;
-  color: #6a6a6a;
-  text-decoration: none;
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
   position: relative;
 }
 
-.header__link::after {
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
   content: "";
-  width: 0px;
-  height: 2px;
-  background: rgb(0, 255, 34);
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  transition: 0.3s ease;
 }
 
-.header__link:hover::after {
-  width: 100%;
-  transition: 0.3s ease;
+.nav-toggle-label span::before {
+  bottom: 7px;
 }
 
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: #ffa98e;
+}
+
+.nav-toggle:checked ~ nav {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: black;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  nav {
+    all: unset;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 1em;
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  nav li {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+/* Section One */
+
+.section-one {
+  margin: 11rem 2rem 0;
+}
+
+.header {
+  font-size: 4.5rem;
+}
 .p {
   color: white;
 }
