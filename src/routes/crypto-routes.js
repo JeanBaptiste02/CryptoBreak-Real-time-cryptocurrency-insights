@@ -36,6 +36,20 @@ router.delete(
   CryptoCtrl.deleteCrypto
 );
 
+router.post(
+  "/cryptopub/:name",
+  authenticate,
+  authorizeAdmin,
+  pubCoinCtrl.insertCryptoPub
+);
+
+router.delete(
+  "/cryptopub/:name",
+  authenticate,
+  authorizeAdmin,
+  pubCoinCtrl.deleteCryptoPub
+);
+
 router.get("/allcrypto", CryptoCtrl.getAllCrypto);
 
 router.get("/cryptos", CoinCtrl.fetchCoins);

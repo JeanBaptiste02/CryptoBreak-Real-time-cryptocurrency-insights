@@ -17,7 +17,7 @@ let lastUpdateTimestamp = 0;
 exports.fetchCoins = async (req, res) => {
   try {
     // Récupérer les noms de cryptos depuis la base de données
-    const cryptosFromDB = await Crypto.find({}, "name");
+    const cryptosFromDB = await Coinpub.find({}, "name");
 
     // Extraire les noms des cryptos
     const cryptoNames = cryptosFromDB.map((crypto) => crypto.name);
@@ -180,5 +180,52 @@ exports.favoriteCoins = async (req, res) => {
     res
       .status(500)
       .json({ error: "Erreur interne du serveur", details: error.message });
+  }
+};
+
+exports.insertCryptoPub = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    // Vérifier si la crypto existe déjà
+    const existingCrypto = await Coinpub.findOne({ name });
+
+    if (existingCrypto) {
+      return res.status(400).json({ error: "La crypto existe déjà." });
+    }
+
+    // Créer un nouvel enregistrement Crypto
+    const newCrypto = new Coinpub({
+      name,
+    });
+
+    // Enregistrer dans la base de données
+    const savedCrypto = await newCrypto.save();
+
+    res.status(201).json(savedCrypto);
+  } catch (error) {
+    console.error("Erreur lors de l'insertion de la crypto :", error);
+    res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+};
+
+exports.deleteCryptoPub = async (req, res) => {
+  try {
+    const { id, name } = req.params;
+
+    // Vérifier si la crypto existe
+    const existingCrypto = await Coinpub.findOne({ name });
+
+    if (!existingCrypto) {
+      return res.status(404).json({ error: "La crypto n'existe pas." });
+    }
+
+    // Supprimer la crypto de la base de données
+    await Coinpub.deleteOne({ name });
+
+    res.status(200).json({ message: "La crypto a été supprimée avec succès." });
+  } catch (error) {
+    console.error("Erreur lors de la suppression de la crypto :", error);
+    res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };
