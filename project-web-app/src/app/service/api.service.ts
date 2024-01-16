@@ -56,7 +56,7 @@ export class ApiService {
   }
 
   addCrypto(name: string, token: string): Observable<any> {
-    const url = `http://localhost:4000/crypto//crypto/${name}`;
+    const url = `http://localhost:4000/crypto//cryptopub/${name}`;
 
     // Ajoutez le token à l'en-tête de la requête
     const headers = new HttpHeaders({
@@ -69,7 +69,7 @@ export class ApiService {
   }
 
   deleteCrypto(name: string, token: string): Observable<any> {
-    const url = `http://localhost:4000/crypto//crypto/${name}`;
+    const url = `http://localhost:4000/crypto//cryptopub/${name}`;
 
     // Ajoutez le token à l'en-tête de la requête
     const headers = new HttpHeaders({

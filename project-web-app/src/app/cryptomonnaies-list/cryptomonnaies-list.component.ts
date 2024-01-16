@@ -133,8 +133,8 @@ export class CryptomonnaiesListComponent implements OnInit {
     this.fetchCoins();
     this.getCompleteDatas();
     this.getGraphData(this.dataDurationInDays);
-    this.deleteCrypto(this);
-    this.addCrypto(this);
+    //this.deleteCrypto(this);
+    //this.addCrypto(this);
   }
 
   getColumns() {
