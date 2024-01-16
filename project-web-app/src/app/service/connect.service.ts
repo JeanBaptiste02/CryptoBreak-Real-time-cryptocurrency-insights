@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
@@ -39,6 +39,27 @@ export class ConnectService {
   }
 
   signup(formData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, formData);
+    this.router.navigate(['/']);
+
+    // Display success notification
+    this.notificationService.showAuthNotification(
+      '👋 Bienvenue ! Vous avez réussi à créer votre compte ! 😊'
+    );
+
+    // Make the HTTP request and handle errors using catchError
+    return this.http.post(`${this.apiUrl}/register`, formData).pipe(
+      catchError((error) => {
+        // Handle HTTP request error here
+        console.error('An error occurred during signup:', error);
+
+        // Display error notification
+        this.notificationService.showErrorNotification(
+          'Vous avez utilisé un e-mail qui existe déjà !'
+        );
+
+        // Re-throw the error for further handling if necessary
+        return of(null);
+      })
+    );
   }
 }
