@@ -4,16 +4,6 @@ CryptoBreak est une application web construite avec Angular qui fournit des info
 
 ![CryptoBreak Logo](project_img.png)
 
-## Table des matières
-
-- [Commencer](#commencer)
-- [Fonctionnalités](#fonctionnalités)
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Technologies Utilisées](#technologies-utilisées)
-- [Contribuer](#contribuer)
-- [Licence](#licence)
-
 ## Commencer
 
 Pour commencer avec CryptoBreak, suivez ces étapes :
@@ -71,7 +61,9 @@ npm install
 
 Lancez le serveur de développement
 
-`ng serve`
+```
+ng serve
+```
 
 Ouvrez votre navigateur et visitez
 
@@ -81,11 +73,17 @@ ou
 
 ### Lancer [Docker](https://www.docker.com/)
 
-`docker-compose build`
-`docker-compopse up`
+```
+docker-compose build
+```
+```
+docker-compopse up
+```
 
 pour arrêter le serveur :
-`docker-compose down`
+```
+docker-compose down
+```
 
 ## Technologies utilisées
 
