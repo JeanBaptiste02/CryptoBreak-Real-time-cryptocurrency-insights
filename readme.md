@@ -4,6 +4,10 @@ CryptoBreak est une application web construite avec Angular qui fournit des info
 
 ![CryptoBreak Logo](project_img.png)
 
+## MIT License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+
+
 ## Commencer
 
 Pour commencer avec CryptoBreak, suivez ces étapes :
